@@ -1,0 +1,93 @@
+.display-list
+{
+	display: block;
+}
+.esriSimpleSlider
+{
+	background-color: rgb(255, 255, 255);
+	background-color: rgba(255, 255, 255, .8);
+	border-color: transparent;
+	border-radius: 0;
+}
+.esriSimpleSliderDecrementButton:hover
+{
+	background-color: rgb(255, 255, 255);
+}
+.esriSimpleSliderIncrementButton:hover
+{
+	background-color: rgb(255, 255, 255);
+}
+.layer-list
+{
+	list-style: none;
+	margin: 0;
+	padding-left: 0;
+	user-select: none;
+	-moz-user-select: none;
+	-webkit-user-select: none;
+	-ms-user-select: none;
+}
+.layer-list > li
+{
+	margin-bottom: 2px;
+}
+.legend-image
+{
+	position: relative;
+	top: 10px;
+}
+.list
+{
+	background-color: rgb(255,255,255);
+	background-color: rgba(255,255,255, .8);
+	left: 76px;
+	max-height: 400px;
+	max-width: 225px;
+	top: 55px;
+	overflow-x: hidden;
+	overflow-y: auto;
+}
+.LocateButton
+{
+	left: 20px;
+	position: absolute;
+	top: 95px;
+	z-index: 50;
+}
+.LocateButton .loading
+{
+	background-image: url('http://js.arcgis.com/3.9/js/esri/dijit/images/locate-spinner.gif') !important;
+}
+.LocateButton .zoomLocateButton
+{
+	background-color: rgb(255, 255, 255);
+	background-color: rgba(255, 255, 255, .8);
+	background-image: url('img/locate.png');
+	border-radius: 0;
+}
+.LocateButton .zoomLocateButton:hover
+{
+	background-color: rgb(255, 255, 255);
+}
+.LocateButton .zoomLocateButton:active
+{
+	background-color: rgb(255, 255, 255);
+}
+.simpleGeocoder .esriGeocoder
+{
+	background-color: rgb(255, 255, 255);
+	background-color: rgba(255, 255, 255, .8);
+	border-radius: 0;
+}
+.simpleGeocoder .esriGeocoder:hover
+{
+	background-color: rgb(255, 255, 255);
+}
+.simpleGeocoder .esriGeocoder:focus
+{
+	background-color: rgb(255, 255, 255);
+}
+.popup
+{
+	z-index: 50;
+}
