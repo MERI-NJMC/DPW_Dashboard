@@ -10,7 +10,7 @@
 	error_reporting(E_ALL);// Change to error_reporting(E_ALL) when testing to show errors and warnings.(0) to show none.
 	if (!empty($_FILES["image"]) && $_FILES["image"]["error"]==0)
 	{
-		echo "in the upload";
+		
 		$again = false;
 		$MAXSIZE= 800;
 		$image=$_FILES["image"];
