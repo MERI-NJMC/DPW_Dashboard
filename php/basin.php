@@ -18,7 +18,12 @@
 			
 			main();
 			function main() {
-				$mysqli = mysqli_connect('10.1.0.237', 'webmaps', 'my59Ld8', 'utilities') or die(mysqli_error());
+				require('dbConnection.php');
+				$ip = ipCon();
+				$uName = uName();
+				$pwd = pwd();
+				$dbName = dbName();
+				$mysqli = mysqli_connect($ip,$uName,$pwd,$dbName) or die(mysql_error());
 				$bid =  $_POST["bid"];
 				$content = '<div style="width: 960px;"><div class="attrBlock"><h2><p class="attrHead">Basin ID: <span id="basinID">'. $_POST["bid"] .'</span></p></h2><br>';
 				$content .= '<h3><p class="attrHead">Basin Attributes</p></h3>';

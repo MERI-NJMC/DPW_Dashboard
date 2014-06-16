@@ -10,6 +10,7 @@
 	error_reporting(E_ALL);// Change to error_reporting(E_ALL) when testing to show errors and warnings.(0) to show none.
 	if (!empty($_FILES["image"]) && $_FILES["image"]["error"]==0)
 	{
+		echo "in the upload";
 		$again = false;
 		$MAXSIZE= 800;
 		$image=$_FILES["image"];
@@ -26,7 +27,7 @@
 		$target_path = "../images/" . $ID .".jpg"; //this path was for testing purposes. The final path may differ.
 		
 		$backup_path = "../images/backups/" . $ID .".jpg";
-		$valid_formats = array("jpg","jpeg");
+		$valid_formats = array("jpg","jpeg","JPG","JPEG");
 		$ext = explode(".", $name);
 		if(in_array(strtolower(end($ext)),$valid_formats))
 		{
