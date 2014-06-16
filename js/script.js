@@ -122,7 +122,7 @@
 							'<label for="responseNotes">Response Notes: <br>' +
 								'<textarea name="responseNotes" id="respoNote" cols="30" rows="10" style="height: 150px;"></textarea>' +
 							'</label>' +
-							'<label for="photo">Photo (.jpg only):  ' + 
+							'<label for="photo">Photo:  ' + 
 								'<input type="file" name="image" id="image">' +
 							'</label>' +
 							'<input type="submit" value="Submit">' +
@@ -330,7 +330,7 @@
 						'<label for="responseNotes">Response Notes: <br>' +
 							'<textarea name="responseNotes" id="respoNote" cols="30" rows="10" style="height: 150px;"></textarea>' +
 						'</label>' +
-						'<label for="photo">Photo (.jpg only):  ' + 
+						'<label for="photo">Photo:  ' + 
 							'<input type="file" name="image" id="image">' +
 						'</label>' +
 						'<input type="submit" value="Submit">' +
@@ -595,7 +595,7 @@
 								'<label for="responseNotes">Response Notes: <br>' +
 									'<textarea name="responseNotes" id="respoNote" cols="30" rows="10" style="height: 150px;"></textarea>' +
 								'</label>' +
-								'<label for="photo">Photo (.jpg only):  ' + 
+								'<label for="photo">Photo:  ' + 
 									'<input type="file" name="image" id="image">' +
 								'</label>' +
 								'<input type="submit" value="Submit">' +
