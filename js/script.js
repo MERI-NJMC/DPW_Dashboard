@@ -588,7 +588,7 @@
 								'<label for="response_type">Response Type: ' +
 									'<select name="response_type" id="responseType">' +
 										'<option value="Routine Maintenance">Routine Maintenance</option>' +
-										'<option value="Repair">Repair</option><option value="Emergency Response/Recovery">Emergency Response/Recovery</option>' +
+										'<option value="Repair">Repair</option><option value="Emergency Response/Recovery">Emergency Response/Recovery</option><option value="Jetting">Jetting</option>' +
 									'</select>' +
 								'</label>' +
 								'<label for="derisCol">Debris Collected (ft&sup3;): <input type="text" name="debrisCol" id="debrisCol"></label>' +
