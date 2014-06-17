@@ -300,6 +300,70 @@
 				}
 
 				echo json_encode($json);
+			} else if($layer->layerName == "Storm Water Gravity Main") {
+				$sline = $layer->attributes;
+				$query = "SELECT * from `stormline_attributes` WHERE `FacilityID` ='".mysqli_real_escape_string($mysqli, $sline->FacilityID)."'";
+				$res = mysqli_query($mysqli, $query);
+				$row = mysqli_fetch_assoc($res);
+				$json['layer'] = $layer->layerName;
+				$json['slid'] = $sline->FacilityID;
+				$json['ownedBy'] = "";
+				$json['muni'] = "";
+				$json['material'] = "";
+				$json['css'] = "";
+				$json['dia'] = "";
+				$json['height'] = "";
+				$json['width'] = "";
+				$json['usi'] = "";
+				$json['dsi'] = "";
+
+				if ($row['OwnedBy'] != "") {
+					$json['ownedBy'] = $row['OwnedBy'];
+				} else if ($sline->OwnedBy != "Null") {
+					$json['ownedBy'] = $sline->OwnedBy;
+				}
+				if ($row['Municipality'] != "") {
+					$json['muni'] = $row['Municipality'];
+				} else if ($sline->Municipality != "Null") {
+					$json['muni'] = $sline->Municipality;
+				}
+				if ($row['Material'] != "") {
+					$json['material'] = $row['Material'];
+				} else if ($sline->Material != "Null") {
+					$json['material'] = $sline->Material;
+				}
+				if ($row['CrossSectionShape'] != "") {
+					$json['css'] = $row['CrossSectionShape'];
+				} else if ($sline->CrossSectionShape != "Null") {
+					$json['css'] = $sline->CrossSectionShape;
+				} 
+				if ($row['Diameter'] != "") {
+					$json['dia'] = $row['Diameter'];
+				} else if ($sline->Diameter != "Null") {
+					$json['dia'] = $sline->Diameter;
+				}
+				if ($row['Height'] != "") {
+					$json['height'] = $row['Height'];
+				} else if ($sline->Height != "Null") {
+					$json['height'] = $sline->Height;
+				}
+				if ($row['Width'] != "") {
+					$json['width'] = $row['Width'];
+				} else if ($sline->Width != "Null") {
+					$json['width'] = $sline->Width;
+				}
+				if ($row['UpStreamInvert'] != "") {
+					$json['usi'] = $row['UpStreamInvert'];
+				} else if ($sline->UpstreamInvert != "Null") {
+					$json['usi'] = $sline->UpstreamInvert;
+				}
+				if ($row['DownStreamInvert'] != "") {
+					$json['dsi'] = $row['DownStreamInvert']; 
+				} else if($sline->DownstreamInvert != "Null") {
+					$json['dsi'] = $sline->DownstreamInvert;
+				} 
+
+				echo json_encode($json);
 			}
 
 		}

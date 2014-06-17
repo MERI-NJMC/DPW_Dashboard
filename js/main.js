@@ -339,3 +339,82 @@ function postOutOpLog() {
 	return false;
 
 }
+
+function postStormline() {
+	if(validateSline()) {
+		var xhr = new XMLHttpRequest();
+		xhr.open('POST', 'php/updateSline.php', false);
+		xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+
+		var slid = document.getElementsByClassName("slineID"),
+			ownedBy = document.getElementById("OwnedBy"),
+			muni = document.getElementById("muni"), 
+			material = document.getElementById("material"),
+			css = document.getElementById("css"),
+			dia = document.getElementById("dia"),
+			height = document.getElementById("height"),
+			width = document.getElementById("width"),
+			usi = document.getElementById("usi"),
+			dsi = document.getElementById("dsi");
+		xhr.onreadystatechange = function () {
+		    if (xhr.readyState < 4)                         
+			        console.log("Loading"); 
+			    else if (xhr.readyState === 4) {                
+			        if (xhr.status == 200 && xhr.status < 300)  
+			            console.log(xhr.responseText);
+			    }
+			}
+		xhr.send("slid=" + slid[0].innerHTML + "&ownedBy=" + ownedBy.value + "&muni=" + muni.value + "&material=" + material.value +
+			"&css=" + css.value + "&dia=" + Number(dia.value) + "&height=" + Number(height.value) + "&width=" + Number(width.value) + "&usi=" + Number(usi.value) + "&dsi=" + Number(dsi.value));
+		alert("Info saved");
+		return false;
+	}
+	return false;
+}
+
+function validateSline() {
+	var	dia = document.getElementById("dia"),
+			height = document.getElementById("height"),
+			width = document.getElementById("width"),
+			usi = document.getElementById("usi"),
+			dsi = document.getElementById("dsi");
+
+	if (isNaN(Number(dia.value))) {
+		alert("Diameter is not a number");
+		return false;
+	} else if (isNaN(Number(height.value))) {
+		alert("Height is not a number");
+		return false;
+	} else if (isNaN(Number(width.value))) {
+		alert("Width is not a number");
+		return false;
+	} else if (isNaN(Number(usi.value))) {
+		alert("Upstream invert is not a number");
+		return false;
+	} else if (isNaN(Number(dsi.value))) {
+		alert("Downstream invert is not a number");
+		return false;
+	} else {
+		return true;
+	}
+}
+
+function postSlineOpLog(){
+	if(validateOpLog()) {
+		var xhr = new XMLHttpRequest();
+		xhr.open('POST', 'php/operationlog.php', false);
+		xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+
+		var slid = document.getElementsByClassName("slineID"),
+			type = document.getElementById("responseType"),
+			debris = document.getElementById("debrisCol"),
+			note = document.getElementById("respoNote"),
+			user = document.getElementById("sessionU").innerHTML;
+
+		xhr.send("basin=" + slid[0].innerHTML + "&type=" + type.value + "&debris=" + debris.value + "&note=" + note.value + "&user=" + user);
+		alert("Info Saved");
+		return true;
+	} else {
+		return false;
+	}	
+}

@@ -24,12 +24,123 @@
                     	swManholeInfo(map,evt,json);
                     } else if (json['layer'] == "Outfall") {
                     	outfallInfo(map,evt,json);
+                    } else if(json['layer'] == "Storm Water Gravity Main") {
+                    	slineInfo(map,evt,json);
                     }
                     
                    	                 
                 }
             }
         
+	}
+	function slineInfo(map,evt,json) {
+		var popup = map.infoWindow,
+			layer = json['layer'],
+			ownedBy = (json['ownedBy'] != "") ? json['ownedBy'] : "",
+    		muni = (json['muni'] != "Null") ? json['muni'] : "",
+    		material = (json['material'] != "") ? json['material'] : "",
+    		css = (json['css'] != "") ? json['css'] : "",
+    		dia = (json['dia'] != "") ? json['dia'] : "",
+    		height = (json['height'] != "") ? json['height'] : "",
+    		width = (json['width'] != "") ? json['width'] : "",
+    		usi = (json['usi'] != "") ? json['usi'] : "",
+    		dsi = (json['dsi'] != "") ? json['dsi'] : "",
+			slineAtt ='<div style="height: 5px"></div>' +
+							'<form action="php/sline.php" method="post" target="_blank">' +
+								'<input type="hidden" name="slid" value="'+ json["slid"] +'" >' +
+								'<input type="hidden" name="time" value="null"><b>Stormline #:   </b>' +
+								'<button><div class="slineID">' + json["slid"] + '</div></button>' +
+							'</form><div style="height: 5px"></div>'  +
+							'<form action="" onsubmit="return postStormline()" method="post">' +
+								'<input type="hidden" name="slid" value="'+ json["slid"] +'" >' +
+								'<label for="OwnedBy">Owned By:  ' +
+									'<select name="OwnedBy" id="OwnedBy">' +
+										'<option value=""></option>'+
+										'<option value="Municipality">Municipality</option>'+
+										'<option value="County">County</option>'+
+										'<option value="State">State</option>'+
+										'<option value="Private">Private</option>'+
+									'</select>'+
+								'</label>' +
+								'<label>Municipality:  ' +
+									'<input type="text" name="municipality" id="muni" value="'+ muni +'" autocomplete="off" style="width: 250px">' +
+								'</label>'  +
+								'<label>Material:  ' +
+									'<input type="text" name="material" id="material" value="'+ material +'" autocomplete="off" style="width: 250px">' +
+								'</label>' +
+								'<label>Cross Section Shape:  ' +
+									'<input type="text" name="css" id="css" value="'+ css +'" autocomplete="off" style="width: 250px">' +
+								'</label>' +
+								'<label>Diameter:  ' +
+									'<input type="text" name="dia" id="dia" value="'+ dia +'" autocomplete="off" style="width: 250px">' +
+								'</label>' +
+								'<label>Height:  ' +
+									'<input type="text" name="height" id="height" value="'+ height +'" autocomplete="off" style="width: 250px">' +
+								'</label>'+
+								'<label>Width:  ' +
+									'<input type="text" name="width" id="width" value="'+ width +'" autocomplete="off" style="width: 250px">' +
+								'</label>'+
+								'<label>Upstream Invert:  ' +
+									'<input type="text" name="usi" id="usi" value="'+ usi +'" autocomplete="off" style="width: 250px">' +
+								'</label>'+
+								'<label>Downstream Invert:  ' +
+									'<input type="text" name="dsi" id="dsi" value="'+ dsi +'" autocomplete="off" style="width: 250px">' +
+								'</label><br>' + 
+							 	'<input type="submit" value="Submit">' +
+							'</form>',
+			slineOp = '<iframe style="display:none;" src="" name="myiframe"></iframe>' +
+						'<div style="height: 5px"></div>' +
+						'<form action="php/sline.php" method="post" target="_blank">' +
+							'<input type="hidden" name="oid" value="'+ json["slid"] +'" >' +
+							'<input type="hidden" name="time" value="null">' +
+							'<b>Stormline #:   </b>' +
+							'<button><div class="slineID">' + json["slid"] + '</div></button>' +
+						'</form>' +
+						'<div style="height: 5px"></div>' + 
+						'<form action="php/processimage.php" method="post" onsubmit="return postSlineOpLog()" enctype="multipart/form-data" target="myiframe">' +
+							'<input type="hidden" name="slid" value="'+ json["slid"] +'" >' +
+							'<label for="response_type">Response Type: ' +
+								'<select name="response_type" id="responseType">' +
+									'<option value="Routine Maintenance">Routine Maintenance</option>' +
+									'<option value="Repair">Repair</option><option value="Emergency Response/Recovery">Emergency Response/Recovery</option>' +
+								'</select>' +
+							'</label>' +
+							'<label for="derisCol">Debris Collected (ft&sup3;): <input type="text" name="debrisCol" id="debrisCol"></label>' +
+							'<label for="responseNotes">Response Notes: <br>' +
+								'<textarea name="responseNotes" id="respoNote" cols="30" rows="10" style="height: 150px;"></textarea>' +
+							'</label>' +
+							'<label for="photo">Photo:  ' + 
+								'<input type="file" name="image" id="image">' +
+							'</label>' +
+							'<input type="submit" value="Submit">' +
+						'</form>',
+			tabPane = '<div class="tab-content"><div class="tab-pane active" id="manhole">'+slineAtt+'</div><div class="tab-pane" id="swOpLog">'+slineOp+'</div></div>',
+			tabs = '<ul class="nav nav-tabs"><li class="active" ><a href="#manhole" data-toggle="tab">Attributes</a></li><li><a href="#swOpLog" data-toggle="tab">Operations Log</a></li></ul>',
+			cont = '<div id="cont" class="tabbable maincon" style="width: 350px; height=350px;">' + tabs + tabPane + '</div>';
+
+		if(!ismobile) {
+     		popup.setTitle("Selected Storm Line");
+     		popup.setContent(cont);
+        	popup.resize(390,550);
+        	popup.show(evt.mapPoint);
+        
+
+		} else {
+			console.log("mobile");
+			$("#popcon").html(cont);
+			$("#selTitle").html("Selected Catchbasin");
+			var pop = document.getElementById("pop");
+			pop.style.visibility='visible';
+
+		}
+		var sel = document.getElementById('OwnedBy');
+        var opts = sel.options;
+        for(var opt, j = 0; opt = opts[j]; j++) {
+          	if (opt.value == ownedBy) {
+          		sel.selectedIndex = j;
+          		break;
+          	}
+        }
 	}
     function outfallInfo(map,evt,json) {
     	var popup = map.infoWindow,
