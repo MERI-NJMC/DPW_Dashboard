@@ -35,7 +35,6 @@
 	}
 	function slineInfo(map,evt,json) {
 		var popup = map.infoWindow,
-			layer = json['layer'],
 			ownedBy = (json['ownedBy'] != "") ? json['ownedBy'] : "",
     		muni = (json['muni'] != "Null") ? json['muni'] : "",
     		material = (json['material'] != "") ? json['material'] : "",
