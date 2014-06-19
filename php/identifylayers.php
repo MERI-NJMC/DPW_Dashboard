@@ -126,6 +126,7 @@
 				
 			
 				echo json_encode($json);
+				break;
 				
 			} else if($layer->layerName == "Storm Water Manhole") { 
 				$manhole = $layer->attributes;
@@ -247,6 +248,7 @@
 
 
 				echo json_encode($json);
+				break;
 			} else if($layer->layerName == "Outfall") {
 				$outfall = $layer->attributes;
 				$query = "SELECT * from `outfall_attributes` WHERE `facilityid` ='".mysqli_real_escape_string($mysqli, $outfall->FacilityID)."'";
@@ -300,6 +302,7 @@
 				}
 
 				echo json_encode($json);
+				break;
 			} else if($layer->layerName == "Storm Water Gravity Main") {
 				$sline = $layer->attributes;
 				$query = "SELECT * from `stormline_attributes` WHERE `FacilityID` ='".mysqli_real_escape_string($mysqli, $sline->FacilityID)."'";
@@ -364,6 +367,7 @@
 				} 
 
 				echo json_encode($json);
+				break;
 			}
 
 		}
