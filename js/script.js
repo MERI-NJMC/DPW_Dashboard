@@ -127,7 +127,7 @@
 		} else {
 			console.log("mobile");
 			$("#popcon").html(cont);
-			$("#selTitle").html("Selected Catchbasin");
+			$("#selTitle").html("Selected Storm Line");
 			var pop = document.getElementById("pop");
 			pop.style.visibility='visible';
 
@@ -252,7 +252,7 @@
          } else {
          	console.log("mobile");
          	$("#popcon").html(cont);
-         	$("#selTitle").html("Selected Catchbasin");
+         	$("#selTitle").html("Selected Outfall");
          	var pop = document.getElementById("pop");
           	pop.style.visibility='visible';
 
