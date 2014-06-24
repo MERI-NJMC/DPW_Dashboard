@@ -515,7 +515,6 @@
     	var popup = map.infoWindow,
     		mid = json['manhole#'],
     		address = (json['address'] != null) ? json['address'] : "",
-    		topRimEl = (json['topRimEl'] != null) ? json['topRimEl'] : 0,
     		condition = json['condition'],
     		ownedBy = (json['ownedBy'] != null) ? json['ownedBy'] : "",
     		muni = (json['muni'] != null) ? json['muni'] : "",
@@ -589,10 +588,11 @@
 							'<label for="address">Address:  ' +
 								'<input type="text" name="address" id="address" value="'+ address+'">' +
 							'</label>' +
-							'<label for="reimEl">' +
-								'Top Rim Elevation:  ' +  
-								'<input type="text" name="rimEl" id="rimEl" value="'+topRimEl+'">' +
-							'</label><br>' +
+							'<br>' +
+							'<label>Rim Elevation: ' +
+						 		'<input type="text" name="RimElevation" id="RimElevationFt" style="width: 50px;" value="'+rimElFt+'"> (ft) ' +
+						 		'<input type="text" name="RimElevation" id="RimElevationIn" style="width: 50px;" value="'+rimElIn+'"> (in) ' +
+						 	'</label>' + 
 							'<label> Condition: ' +
 									'<select name="condition" id="mhCondition">' +
 									'<option value=""></option>' +
@@ -639,10 +639,6 @@
 						 	'<label>High Pipe Elevation: ' +
 						 		'<input type="text" name="HighPipeElevation" id="HighPipeElevationFt" style="width: 50px;" value="'+hpeFt+'"> (ft) ' +
 						 		'<input type="text" name="HighPipeElevation" id="HighPipeElevationIn" style="width: 50px;" value="'+hpeIn+'"> (in) ' +
-						 	'</label>' + 
-						 	'<label>Rim Elevation: ' +
-						 		'<input type="text" name="RimElevation" id="RimElevationFt" style="width: 50px;" value="'+rimElFt+'"> (ft) ' +
-						 		'<input type="text" name="RimElevation" id="RimElevationIn" style="width: 50px;" value="'+rimElIn+'"> (in) ' +
 						 	'</label>' + 
 						 	'<label>Invert Elevation: ' +
 						 		'<input type="text" name="InvertElevation" id="InvertElevationFt" style="width: 50px;" value="'+inverElFt+'"> (ft) ' +

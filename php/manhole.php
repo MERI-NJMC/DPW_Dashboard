@@ -44,7 +44,7 @@
 					$inter = floor($inter) . " (ft) " . (($inter-floor($inter))*12) . " (in)";
 					$content .= '
 									<p class="attr"><b>Address: </b>' . $row['address'] . ' </p>
-									<p class="attr"><b>Top Rim Elevation: </b>' . $row['topRimEl'] . ' </p>
+									<p class="attr"><b>Rim Elevation: </b>' . $rimEl . ' </p>
 									<p class="attr"><b>Condition: </b>' . $row['condition'] . ' </p>
 									<button type="button" id="addAtt">Addtional Atrributes <span class="glyphicon glyphicon-plus-sign"></span></button><br><br>
 									<p id="testTogAtt" style="display: none">
@@ -55,7 +55,6 @@
 									<b class="attr">Access Type: </b>' . $row['AccessType'] . '<br>
 									<b class="attr">Ground Type: </b>' . $row['GroundType'] . '<br>
 									<b class="attr">High Pipe Elevation: </b>' . $hpe . '<br> 
-									<b class="attr">Rim Elevation: </b>' . $rimEl . '<br> 
 									<b class="attr">Invert Elevation: </b>' . $inver . '<br> 
 									<b class="attr">Manhole Drop: </b>' . $row['ManholeDrop'] . '<br>
 									<b class="attr">Interior Drop: </b>' . $inter . '<br> 

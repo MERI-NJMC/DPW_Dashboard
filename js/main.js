@@ -164,7 +164,6 @@ function postManhole() {
 
 		var mid = document.getElementsByClassName("manholeID"),
 			address = document.getElementById("address"),
-			topRimEl = document.getElementById("rimEl"),
 			condition = document.getElementById("mhCondition"),
 			ownedBy = document.getElementById("OwnedBy"),
 			muni = document.getElementById("Municipality"),
@@ -204,7 +203,7 @@ function postManhole() {
 		    }
 		}
 
-		xhr.send("mid=" + mid[0].innerHTML + "&address=" + address.value + "&topRimEl=" + Number(topRimEl.value) + "&condition=" + condition.value + "&ownedBy=" + ownedBy.value +
+		xhr.send("mid=" + mid[0].innerHTML + "&address=" + address.value + "&condition=" + condition.value + "&ownedBy=" + ownedBy.value +
 				"&muni=" + muni.value + "&locDesc=" + locDesc.value + "&accDia=" + accDia + "&accType=" + accType.value + "&groundType=" + groundType.value + "&hpe=" + hpe + "&rimEl=" + rimEl + 
 				"&inverEl=" + inverEl + "&manholeDrop=" + manholeDrop.value + "&interDrop=" + interDrop + "&wallMat=" + wallMat.value + "&structShape=" + structShape.value + "&manholeType=" + manholeType.value +
 				"&metered=" + Number(metered.value) + "&comments=" + comments.value);
@@ -215,8 +214,7 @@ function postManhole() {
 }
 
 function validateManhole() {
-	var topRimEl = document.getElementById("rimEl"),
-		accDiaFt = document.getElementById("AccessDiameterFt"),
+	var accDiaFt = document.getElementById("AccessDiameterFt"),
 		accDiaIn = document.getElementById("AccessDiameterIn"),
 		hpeFt = document.getElementById("HighPipeElevationFt"),
 		hpeIn = document.getElementById("HighPipeElevationIn"),
@@ -230,10 +228,7 @@ function validateManhole() {
 
 
 
-	if (isNaN(Number(topRimEl.value))) {
-		alert("Top Rim Elevation is not a number");
-		return false;
-	} else if (isNaN(Number(accDiaIn.value)) || isNaN(Number(accDiaFt.value))) {
+	if (isNaN(Number(accDiaIn.value)) || isNaN(Number(accDiaFt.value))) {
 		alert("Access Diameter input is not a number");
 		return false;
 	} else if(isNaN(Number(hpeIn.value)) || isNaN(Number(hpeFt.value))) {
