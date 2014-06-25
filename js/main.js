@@ -6,9 +6,6 @@ $(document).ready(function() {
 	$("img").error(function() {
 		$(this).css({visibility:"hidden"});
 	});
-	$("#addAtt").click(function() {
-		$("#testTogAtt").toggle("fast");
-	});
 
 });
 

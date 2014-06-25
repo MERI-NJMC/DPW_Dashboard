@@ -1,0 +1,54 @@
+<html>
+	<head>
+		<title>Report Selector</title>
+		<link rel="stylesheet" href="css/style.css">
+		
+		<link rel="stylesheet" href="css/basin.css">
+		<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+		<script src="http://code.jquery.com/jquery-2.1.1.js"></script>
+        <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+        <script src="js/main.js"></script>
+	</head>
+	<body>
+		<div class="container">
+			<h1>Report Selector Form</h1>
+			<h5>Choose your municipality and which utility you'd like reports for.</h5>
+			<form action="php/reportList.php" method="post" class="form-horizontal">
+				<div class="control-group">
+					<label for="util" class="control-label">Utility: </label><br>
+				</div>
+				<div class="controls">
+					<select name="util" id="util">
+					  <option value="Catch Basin">Catch Basin</option>
+					  <option value="Storm Water Manhole">Storm Water Manhole</option>
+					  <option value="Storm Water Line">Storm Water Line</option>
+					  <option value="Outfall">Outfall</option>
+					</select>
+				</div><br>
+				<div class="control-group">
+					<label for="muni" class="control-label">Municipality: </label><br>
+				</div>
+				<div class="controls">
+					<select name="muni" id="muni">
+					  <option value="Carlstadt">Carlstadt</option>
+					  <option value="East Rutherford">East Rutherford</option>
+					  <option value="Little Ferry">Little Ferry</option>
+					  <option value="Lyndhurst">Lyndhurst</option>
+					  <option value="Moonachie">Moonachie</option>
+					  <option value="North Arlington">North Arlington</option>
+					  <option value="Ridgefield">Ridge Field</option>
+					  <option value="Rutherford">Rutherford</option>
+					  <option value="South Hackensack">South Hackensack</option>
+					  <option value="Teterboro">Teterboro</option>
+					  <option value="Jersey City">Jersey City</option>
+					  <option value="Kearny">Kearny</option>
+					  <option value="North Bergen">North Bergen</option>
+					  <option value="Secaucus">Secaucus</option>
+					</select>
+				</div><br>
+				<input type="submit" value="submit">
+			</form>
+
+		</div>
+	</body>
+</html>

@@ -63,7 +63,7 @@
 				left: 20px;
 				padding: 2px;
 				position: absolute;
-				top: 230px;
+				top: 275px;
 				width: 30px;
 				z-index: 50;
 			}
@@ -83,6 +83,22 @@
 				position: absolute;
 				top: 20px;
 				z-index: 2;
+			}
+			.reports
+			{
+				background-color: rgba(255, 255, 255, .8);
+				background-image: url('css/img/reportButton.png');
+				background-position: center center;
+				background-repeat: no-repeat;
+				background-size: 20px;
+				cursor: pointer;
+				height: 30px;
+				left: 20px;
+				padding: 2px;
+				position: absolute;
+				top: 230px;
+				width: 30px;
+				z-index: 50;
 			}
 			.mypop {
 				z-index: 100;
@@ -123,6 +139,7 @@
 			<div id="LocateButton" class="LocateButton hover"></div>
 			<div id="extent" class="extent hover"></div>
 			<div id="layers" class="layers hover"></div>
+			<a target="_blank" href="reportSelect.html"><div id="reports" class="reports hover"></div></a>
 			<div id="Logoff" class="logoff hover"></div>
 			<div id="popup" class="popup" ></div>
 			<div id="list" class="list"></div>
