@@ -6,7 +6,9 @@ $(document).ready(function() {
 	$("img").error(function() {
 		$(this).css({visibility:"hidden"});
 	});
-
+	$("#addAtt").click(function() {
+		$("#testTogAtt").toggle("fast");
+	});
 });
 
 function cubicCalc() {
@@ -34,12 +36,8 @@ function validateBasin() {
 	    lineSizeFt = document.getElementById('lineSizeFt'),
 	    lineSizeIn = document.getElementById('lineSizeIn'), 
 	    rimElFt = document.getElementById('RimElevationFt'),
-	    rimElIn = document.getElementById('RimElevationIn'),
-	  	accDiaFt = document.getElementById('AccessDiameterFt'),
 	    accDiaIn = document.getElementById('AccessDiameterIn'),
-	    inverFt = document.getElementById('InvertElevationFt'),
-	    inverIn = document.getElementById('InvertElevationIn');
-
+	    inverFt = document.getElementById('InvertElevationFt');
 	if(isNaN(Number(length.value))) {
 		alert("Length is not a number");
 		return false;
@@ -52,11 +50,11 @@ function validateBasin() {
 	} else if(isNaN(Number(lineSizeFt.value)) || isNaN(Number(lineSizeIn.value))) {
 		alert("The line size input is not a number");
 		return false;
-	} else if(isNaN(Number(rimElIn.value)) || isNaN(Number(rimElFt.value))) {
+	} else if(isNaN(Number(rimElFt.value))) {
 		alert("The Rim Elevation input is not a number");
-	} else if(isNaN(Number(accDiaFt.value)) || isNaN(Number(accDiaIn.value))) { 
+	} else if(isNaN(Number(accDiaIn.value))) { 
 		alert("The Access Diameter is not a number");
-	} else if(isNaN(Number(inverFt.value)) || isNaN(Number(inverIn.value))) { 
+	} else if(isNaN(Number(inverFt.value))) { 
 		alert("The Invert Elevation is not a number");
 	} else {
 		return true;
@@ -120,16 +118,10 @@ function postBasin() {
 			locDesc = document.getElementById("LocationDescription"),
 			cbType = document.getElementById("CBType"), 
 			rimElFt = document.getElementById("RimElevationFt"),
-			rimElIn = document.getElementById("RimElevationIn"),
-			rimEl = Number(rimElFt.value) + (Number(rimElIn.value)/12),
-			accDiaFt = document.getElementById("AccessDiameterFt"),
 			accDiaIn = document.getElementById("AccessDiameterIn"),
-			accDia = Number(accDiaFt.value) + (Number(accDiaIn.value)/12),
 			accMat = document.getElementById("AccessMaterial"),
 			accType = document.getElementById("AccessType"), 
 			inverElFt = document.getElementById("InvertElevationFt"),
-			inverElIn = document.getElementById("InvertElevationIn"),
-			inverEl = Number(inverElFt.value) + (Number(inverElIn.value)/12),
 			comments = document.getElementById("Comments"); 
 
 
@@ -144,8 +136,8 @@ function postBasin() {
 
 		xhr.send("basin=" + basin[0].innerHTML + "&address=" + address.value + "&width=" + Number(width.value) + "&length=" + Number(length.value) + "&depth=" + Number(depth.value) + "&size=" + Number(size.value) + "&lineSize=" + lineSize + "&drain=" + drain.value + "&condition=" + condition.value +
 					"&ownedBy=" + ownedBy.value + "&muni=" + muni.value + "&locDesc=" + locDesc.value +
-					"&cbType=" + cbType.value + "&rimEl=" + Number(rimEl) + "&accDia=" + Number(accDia) + "&accMat=" + accMat.value +
-					"&accType=" + accType.value + "&inverEl=" + Number(inverEl) + "&comments=" + comments.value);
+					"&cbType=" + cbType.value + "&rimEl=" + Number(rimElFt.value) + "&accDia=" + Number(accDiaIn.value) + "&accMat=" + accMat.value +
+					"&accType=" + accType.value + "&inverEl=" + Number(inverElFt.value) + "&comments=" + comments.value);
 		alert("Info Saved");
 		return false;
 	} else {
@@ -165,24 +157,14 @@ function postManhole() {
 			ownedBy = document.getElementById("OwnedBy"),
 			muni = document.getElementById("Municipality"),
 			locDesc = document.getElementById("LocationDescription"),
-			accDiaFt = document.getElementById("AccessDiameterFt"),
 			accDiaIn = document.getElementById("AccessDiameterIn"),
-			accDia = Number(accDiaFt.value) + (Number(accDiaIn.value)/12),
 			accType = document.getElementById("AccessType"), 
 			groundType = document.getElementById("GroundType"),
 			hpeFt = document.getElementById("HighPipeElevationFt"),
-			hpeIn = document.getElementById("HighPipeElevationIn"),
-			hpe = Number(hpeFt.value) + (Number(hpeIn.value)/12),
 			rimElFt = document.getElementById("RimElevationFt"),
-			rimElIn = document.getElementById("RimElevationIn"),
-			rimEl = Number(rimElFt.value) + (Number(rimElIn.value)/12),
 			inverElFt = document.getElementById("InvertElevationFt"),
-			inverElIn = document.getElementById("InvertElevationIn"),
-			inverEl = Number(inverElFt.value) + (Number(inverElIn.value)/12),
 			manholeDrop = document.getElementById("ManholeDrop"),
-			interDropFt = document.getElementById("InteriorDropFt"),
 			interDropIn = document.getElementById("InteriorDropIn"),
-			interDrop = Number(interDropFt.value) + (Number(interDropIn.value)/12),
 			wallMat = document.getElementById("WallMaterial"),
 			structShape = document.getElementById("StructuralShape"),
 			manholeType = document.getElementById("ManholeType"),
@@ -201,8 +183,8 @@ function postManhole() {
 		}
 
 		xhr.send("mid=" + mid[0].innerHTML + "&address=" + address.value + "&condition=" + condition.value + "&ownedBy=" + ownedBy.value +
-				"&muni=" + muni.value + "&locDesc=" + locDesc.value + "&accDia=" + accDia + "&accType=" + accType.value + "&groundType=" + groundType.value + "&hpe=" + hpe + "&rimEl=" + rimEl + 
-				"&inverEl=" + inverEl + "&manholeDrop=" + manholeDrop.value + "&interDrop=" + interDrop + "&wallMat=" + wallMat.value + "&structShape=" + structShape.value + "&manholeType=" + manholeType.value +
+				"&muni=" + muni.value + "&locDesc=" + locDesc.value + "&accDia=" + Number(accDiaIn.value) + "&accType=" + accType.value + "&groundType=" + groundType.value + "&hpe=" + Number(hpeFt.value) + "&rimEl=" + Number(rimElFt.value) + 
+				"&inverEl=" + Number(inverElFt.value) + "&manholeDrop=" + manholeDrop.value + "&interDrop=" + Number(interDropIn.value) + "&wallMat=" + wallMat.value + "&structShape=" + structShape.value + "&manholeType=" + manholeType.value +
 				"&metered=" + Number(metered.value) + "&comments=" + comments.value);
 		alert("Info Saved");
 		return false;
@@ -211,33 +193,29 @@ function postManhole() {
 }
 
 function validateManhole() {
-	var accDiaFt = document.getElementById("AccessDiameterFt"),
-		accDiaIn = document.getElementById("AccessDiameterIn"),
+	var accDiaIn = document.getElementById("AccessDiameterIn"),
 		hpeFt = document.getElementById("HighPipeElevationFt"),
-		hpeIn = document.getElementById("HighPipeElevationIn"),
 		rimElFt = document.getElementById("RimElevationFt"),
 		rimElIn = document.getElementById("RimElevationIn"),
 		inverFt = document.getElementById("InvertElevationFt"),
-		inverIn = document.getElementById("InvertElevationIn"),
-		interDropFt = document.getElementById("InteriorDropFt"),
 		interDropIn = document.getElementById("InteriorDropIn");
 
 
 
 
-	if (isNaN(Number(accDiaIn.value)) || isNaN(Number(accDiaFt.value))) {
+	if (isNaN(Number(accDiaIn.value))) {
 		alert("Access Diameter input is not a number");
 		return false;
-	} else if(isNaN(Number(hpeIn.value)) || isNaN(Number(hpeFt.value))) {
+	} else if(isNaN(Number(hpeFt.value))) {
 		alert("High Pipe Elevation input is not a number");
 		return false;
-	} else if (isNaN(Number(rimElIn.value)) || isNaN(Number(rimElFt.value))) {
+	} else if (isNaN(Number(rimElFt.value))) {
 		alert("Rim Elevation input is not a number");
 		return false;
-	} else if (isNaN(Number(inverIn.value)) || isNaN(Number(inverFt.value))) {
+	} else if (isNaN(Number(inverFt.value))) {
 		alert("Invert Elevation input is not a number");
 		return false;
-	} else if (isNaN(Number(interDropIn.value)) || isNaN(Number(interDropFt.value))) {
+	} else if (isNaN(Number(interDropIn.value))) {
 		alert("Interior Drop input is not a number");
 		return false;
 	} else {
@@ -278,9 +256,7 @@ function postOutfall() {
 			material = document.getElementById("Material"),
 			recWater = document.getElementById("recWater"),
 			comments = document.getElementById("Comments"),
-			diaFt = document.getElementById("diaFt"),
-			diaIn = document.getElementById("diaIn"),
-			dia = Number(diaFt.value) + (Number(diaIn.value)/12);
+			diaIn = document.getElementById("diaIn");
 			xhr.onreadystatechange = function () {
 		    if (xhr.readyState < 4)                         
 			        console.log("Loading"); 
@@ -291,7 +267,7 @@ function postOutfall() {
 			}
 		
 		xhr.send("oid=" + oid[0].innerHTML + "&ownedBy=" + ownedBy.value + "&muni=" + muni.value +
-			"&locDesc=" + locDesc.value + "&material=" + material.value + "&recWater=" + recWater.value + "&dia=" + dia + 
+			"&locDesc=" + locDesc.value + "&material=" + material.value + "&recWater=" + recWater.value + "&dia=" + diaIn.value + 
 			"&comments=" + comments.value);
 		alert("Info Saved");
 		return false;
@@ -301,12 +277,11 @@ function postOutfall() {
 }
 
 function validateOutfall() {
-	var diaFt = document.getElementById("diaFt"),
-		diaIn = document.getElementById("diaIn");
+	var	diaIn = document.getElementById("diaIn");
 
-	if (isNaN(Number(diaFt.value)) || isNaN(Number(diaIn.value))) {
+	if (isNaN(Number(diaIn.value))) {
 		alert("Diameter input is not a number");
-		return false
+		return false;
 	} 
 
 	return true;

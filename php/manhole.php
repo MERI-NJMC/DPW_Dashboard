@@ -33,31 +33,26 @@
 				if($row != null) {
 					
 					$accDia = $row['AccessDiameter'];
-					$accDia = floor($accDia) . " (ft) " . (($accDia-floor($accDia))*12) . " (in)";
 					$hpe = $row['HighPipeElevation'];
-					$hpe = floor($hpe) . " (ft) " . (($hpe-floor($hpe))*12) . " (in)";
 					$rimEl = $row['RimElevation'];
-					$rimEl = floor($rimEl) . " (ft) " . (($rimEl-floor($rimEl))*12) . " (in)";
 					$inver = $row['InvertElevation'];
-					$inver = floor($inver) . " (ft) " . (($inver-floor($inver))*12) . " (in)";
 					$inter = $row['InteriorDrop'];
-					$inter = floor($inter) . " (ft) " . (($inter-floor($inter))*12) . " (in)";
 					$content .= '
 									<p class="attr"><b>Address: </b>' . $row['address'] . ' </p>
-									<p class="attr"><b>Rim Elevation: </b>' . $rimEl . ' </p>
+									<p class="attr"><b>Rim Elevation: </b>' . $rimEl . ' (ft)</p>
 									<p class="attr"><b>Condition: </b>' . $row['condition'] . ' </p>
 									<button type="button" id="addAtt">Addtional Atrributes <span class="glyphicon glyphicon-plus-sign"></span></button><br><br>
 									<p id="testTogAtt" style="display: none">
 									<b class="attr">Owned By: </b>' . $row['OwnedBy'] . '<br>
 									<b class="attr">Municipality: </b>' . $row['Municipality'] . '<br>
 									<b class="attr">Location Description: </b>' . $row['LocationDescription'] . '<br>
-									<b class="attr">Access Diameter: </b>' . $accDia . '<br>
+									<b class="attr">Access Diameter: </b>' . $accDia . ' (in)<br>
 									<b class="attr">Access Type: </b>' . $row['AccessType'] . '<br>
 									<b class="attr">Ground Type: </b>' . $row['GroundType'] . '<br>
-									<b class="attr">High Pipe Elevation: </b>' . $hpe . '<br> 
-									<b class="attr">Invert Elevation: </b>' . $inver . '<br> 
+									<b class="attr">High Pipe Elevation: </b>' . $hpe . ' (ft)<br> 
+									<b class="attr">Invert Elevation: </b>' . $inver . ' (ft)<br> 
 									<b class="attr">Manhole Drop: </b>' . $row['ManholeDrop'] . '<br>
-									<b class="attr">Interior Drop: </b>' . $inter . '<br> 
+									<b class="attr">Interior Drop: </b>' . $inter . ' (in)<br> 
 									<b class="attr">Wall Material: </b>' . $row['WallMaterial'] . '<br>
 									<b class="attr">Structural Shape: </b>' . $row['StructuralShape'] . '<br>
 									<b class="attr">Manhole Type: </b>' . $row['ManholeType'] . '<br>

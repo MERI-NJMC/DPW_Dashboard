@@ -38,11 +38,11 @@
 									<p class="attr"><b>Municipality: </b>' . $row['Municipality'] . ' </p>
 									<p class="attr"><b>Material: </b>' . $row['Material'] . ' </p>
 									<p class="attr"><b>Cross Section Shape: </b>' . $row['CrossSectionShape'] . ' </p>
-									<p class="attr"><b>Diameter: </b>' . $row['Diameter'] . ' </p>
-									<p class="attr"><b>Height: </b>' . $row['Height'] . ' </p>
-									<p class="attr"><b>Width: </b>' . $row['Width'] . ' </p>
-									<p class="attr"><b>Upstream Invert: </b>' . $row['UpStreamInvert'] . ' </p>
-									<p class="attr"><b>Down Stream Invert: </b>' . $row['DownStreamInvert'] . ' </p>
+									<p class="attr"><b>Diameter: </b>' . $row['Diameter'] . ' (in)</p>
+									<p class="attr"><b>Height: </b>' . $row['Height'] . ' (in)</p>
+									<p class="attr"><b>Width: </b>' . $row['Width'] . ' (in)</p>
+									<p class="attr"><b>Upstream Invert: </b>' . $row['UpStreamInvert'] . ' (ft)</p>
+									<p class="attr"><b>Down Stream Invert: </b>' . $row['DownStreamInvert'] . ' (ft)</p>
 								 </div>
 								 <div style="float: left; width="100%"><img class="basinImg" src="../images/' . $mid . '.jpg" alt=""></div><br style="clear: both;"/></div>';
 				} else {

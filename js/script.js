@@ -39,11 +39,11 @@
     		muni = (json['muni'] != "Null") ? json['muni'] : "",
     		material = (json['material'] != "") ? json['material'] : "",
     		css = (json['css'] != "") ? json['css'] : "",
-    		dia = (json['dia'] != "") ? json['dia'] : "",
-    		height = (json['height'] != "") ? json['height'] : "",
-    		width = (json['width'] != "") ? json['width'] : "",
-    		usi = (json['usi'] != "") ? json['usi'] : "",
-    		dsi = (json['dsi'] != "") ? json['dsi'] : "",
+    		dia = (json['dia'] != "") ? json['dia'] : "0.0",
+    		height = (json['height'] != "") ? json['height'] : "0.0",
+    		width = (json['width'] != "") ? json['width'] : "0.0",
+    		usi = (json['usi'] != "") ? json['usi'] : "0.0",
+    		dsi = (json['dsi'] != "") ? json['dsi'] : "0.0",
 			slineAtt ='<div style="height: 5px"></div>' +
 							'<form action="php/sline.php" method="post" target="_blank">' +
 								'<input type="hidden" name="slid" value="'+ json["slid"] +'" >' +
@@ -70,20 +70,20 @@
 								'<label>Cross Section Shape:  ' +
 									'<input type="text" name="css" id="css" value="'+ css +'" autocomplete="off" style="width: 250px">' +
 								'</label>' +
-								'<label>Diameter:  ' +
-									'<input type="text" name="dia" id="dia" value="'+ dia +'" autocomplete="off" style="width: 250px">' +
-								'</label>' +
-								'<label>Height:  ' +
-									'<input type="text" name="height" id="height" value="'+ height +'" autocomplete="off" style="width: 250px">' +
-								'</label>'+
-								'<label>Width:  ' +
-									'<input type="text" name="width" id="width" value="'+ width +'" autocomplete="off" style="width: 250px">' +
-								'</label>'+
-								'<label>Upstream Invert:  ' +
-									'<input type="text" name="usi" id="usi" value="'+ usi +'" autocomplete="off" style="width: 250px">' +
-								'</label>'+
-								'<label>Downstream Invert:  ' +
-									'<input type="text" name="dsi" id="dsi" value="'+ dsi +'" autocomplete="off" style="width: 250px">' +
+								'<label>Diameter (in):  ' +
+									'<input type="text" name="dia" id="dia" style="width: 50px;" value="'+ dia +'" autocomplete="off" style="width: 250px">' +
+								'</label><br>' +
+								'<label>Height (in):  ' +
+									'<input type="text" name="height" id="height" style="width: 50px;" value="'+ height +'" autocomplete="off" style="width: 250px">' +
+								'</label><br>'+
+								'<label>Width (in):  ' +
+									'<input type="text" name="width" id="width" style="width: 50px;" value="'+ width +'" autocomplete="off" style="width: 250px">' +
+								'</label><br>'+
+								'<label>Upstream Invert (ft):  ' +
+									'<input type="text" name="usi" id="usi" style="width: 50px;" value="'+ usi +'" autocomplete="off" style="width: 250px">' +
+								'</label><br>'+
+								'<label>Downstream Invert (ft):  ' +
+									'<input type="text" name="dsi" id="dsi" style="width: 50px; "value="'+ dsi +'" autocomplete="off" style="width: 250px">' +
 								'</label><br>' + 
 							 	'<input type="submit" value="Submit">' +
 							'</form>',
@@ -150,13 +150,7 @@
     		recWater = (json['recWater'] != "Null") ? json['recWater'] : "",
     		comments = (json['comments'] != "Null") ? json['comments'] : "";
     	var dia = (json['dia'] != "Null") ? Number(json['dia']) : -1;
-     	if (dia != -1) {
-     		var diaFt = Math.floor(dia);
-     		var diaIn = ((dia - diaFt) * 12).toFixed(0);
-     	} else {
-     		var diaFt = 0;
-     		var diaIn = 0;
-     	} 
+
 	    var	outAttr = '<div style="height: 5px"></div>' +
 							'<form action="php/outfall.php" method="post" target="_blank">' +
 								'<input type="hidden" name="oid" value="'+ json["oid"] +'" >' +
@@ -202,8 +196,7 @@
 									'<input type="text" name="recWater" id="recWater" value="'+ recWater +'" autocomplete="off" style="width: 250px">' +
 								'</label>' +
 								'<label>Diameter: ' +
-							 		'<input type="text" name="diaFt" id="diaFt" style="width: 50px;" value="'+diaFt+'"> (ft) ' + 
-							 		'<input type="text" name="diaIn" id="diaIn" style="width: 50px;" value="'+diaIn+'"> (in)' +
+							 		'<input type="text" name="diaIn" id="diaIn" style="width: 50px;" value="'+dia+'"> (in)' +
 							 	'</label>' + 
 							 	'<label>Comments: <br>' +
 							 		'<textarea name="Comments" id="Comments" cols="30" rows="10" style="height: 75px;">'+comments+'</textarea>' +
@@ -278,10 +271,10 @@
     function basinPopInfo(map,evt,json) {
     	 var popup = map.infoWindow;
     	 var address = (json['address'] != null) ? json['address'] : "";
-    	 var length = (json['length'] != null) ? json['length'] : 0;
-         var width = (json['width'] != null) ? json['width'] : 0;
-         var depth = (json['depth'] != null) ? json['depth'] : 0;
-         var size = (json['size'] != null) ? json['size'] : 0;
+    	 var length = (json['length'] != null) ? json['length'] : "0.0";
+         var width = (json['width'] != null) ? json['width'] : "0.0";
+         var depth = (json['depth'] != null) ? json['depth'] : "0.0";
+         var size = (json['size'] != null) ? json['size'] : "0.0";
          var line_size = Number(json['line_size']);
          if (line_size != "") {
          	var line_sizeFt = Math.floor(line_size);
@@ -294,35 +287,15 @@
          var select = '<select name="drainsTo" id="drainsTo"><option value=""></option> +<option value="Ackerman\'s Creek">Ackerman\'s Creek</option><option value="Bellman\'s Creek">Bellman\'s Creek</option><option value="Berry\'s Creek">Berry\'s Creek</option><option value="Berry\'s Creek Canal">Berry\'s Creek Canal</option><option value="Cromakill Creek">Cromakill Creek</option><option value="East Riser Ditch">East Riser Ditch</option><option value="Frank\'s Creek">Frank\'s Creek</option><option value="Hackensack River">Hackensack River</option><option value="Hudson River">Hudson River</option><option value="Kingsland Creek">Kingsland Creek</option><option value="Losen Slote Creek">Losen Slote Creek</option><option value="Mary Ann Creek">Mary Ann Creek</option><option value="Moonachie Creek">Moonachie Creek</option><option value="Nevertouch Creek">Nevertouch Creek</option><option value="Overpeck Creek">Overpeck Creek</option><option value="Passaic River">Passaic River</option><option value="Paunpeck Creek">Paunpeck Creek</option><option value="Peach Island Creek">Peach Island Creek</option><option value="Penhorn Creek">Penhorn Creek</option><option value="Walden Swamp Creek">Walden Swamp Creek</option><option value="West River Ditch">West River Ditch</option><option value="Wolf\'s Creek">Wolf\'s Creek</option></select>';
          var condition = json['condition'];
          var ownedBy = (json['ownedBy'] != null) ? json['ownedBy'] : "",
-         	muni = (json['muni'] != null) ? json['muni'] : "",
-         	locDesc = json['locDesc'],
-         	cbType = json['CBType'];
-         var rimEl = Number(json['rimEl']);
-         if (rimEl != "") {
-         	var rimElFt = Math.floor(rimEl);
-         	var rimElIn = ((rimEl - rimElFt) * 12).toFixed(0);
-         } else {
-         	var rimElFt = 0;
-         	var rimElIn = 0;
-         }
-         var accDia = Number(json['accDia']);
-         if (accDia != "") {
-         	var accDiaFt = Math.floor(accDia);
-         	var accDiaIn = ((accDia - accDiaFt) * 12).toFixed(0);
-         } else {
-         	var accDiaFt = 0;
-         	var accDiaIn = 0;
-         }
+         	 muni = (json['muni'] != null) ? json['muni'] : "",
+         	 locDesc = json['locDesc'],
+         	 cbType = json['CBType'];
+         var rimEl = (json['rimEl'] != "") ? Number(json['rimEl']) : "0.0";
+         var accDia = (json['accDia'] != "") ? Number(json['accDia']) : "0.0";
          var accMat = (json['accMat'] != null) ? json['accMat'] : "";
          var accType = (json['accType'] != null) ? json['accType'] : "";
-         var inverEl = Number(json['inverEl']);
-         if (inverEl != "") {
-         	var inverElFt = Math.floor(inverEl);
-         	var inverElIn = ((inverEl - inverElFt) * 12).toFixed(0);
-         } else {
-         	var inverElFt = 0;
-         	var inverElIn = 0;
-         }
+         var inverEl = (json['inverEl'] != "") ? Number(json['inverEl']) : "0.0";
+
          var comments = json['comments'];
 
          var basin = '<div style="height: 5px"></div>' +
@@ -381,12 +354,10 @@
 						 		'<input type="text" name="CBType" id="CBType" value="'+cbType+'">' + 
 						 	'</label>' + 
 						 	'<label>Top of Structure: ' +
-						 		'<input type="text" name="RimElevationFt" id="RimElevationFt" style="width: 50px;" value="'+rimElFt+'"> (ft) ' + 
-						 		'<input type="text" name="RimElevationIn" id="RimElevationIn" style="width: 50px;" value="'+rimElIn+'"> (in)' + 
-						 	'</label>' + 
+						 		'<input type="text" name="RimElevationFt" id="RimElevationFt" style="width: 50px;" value="'+rimEl+'"> (ft) ' + 
+						 	'</label><br>' + 
 						 	'<label>Diameter: ' +
-						 		'<input type="text" name="AccessDiameterFt" id="AccessDiameterFt" style="width: 50px;" value="'+accDiaFt+'"> (ft) ' + 
-						 		'<input type="text" name="AccessDiameterIn" id="AccessDiameterIn" style="width: 50px;" value="'+accDiaIn+'"> (in)' +
+						 		'<input type="text" name="AccessDiameterIn" id="AccessDiameterIn" style="width: 50px;" value="'+accDia+'"> (in)' +
 						 	'</label>' + 
 						 	'<label>Access Material: ' +
 						 		'<select name="AccessMaterial" id="AccessMaterial">' +
@@ -410,8 +381,7 @@
 								'</select>'+ 
 						 	'</label>' + 
 						 	'<label>Invert Elevation: ' +
-						 		'<input type="text" name="InvertElevationFt" id="InvertElevationFt" style="width: 50px;" value="'+inverElFt+'"> (ft) ' +
-						 		'<input type="text" name="InvertElevationIn" id="InvertElevationIn" style="width: 50px;" value="'+inverElIn+'"> (in) ' +
+						 		'<input type="text" name="InvertElevationFt" id="InvertElevationFt" style="width: 50px;" value="'+inverEl+'"> (ft) ' +
 						 	'</label>' + 
 						 	'<label>Comments: <br>' +
 						 		'<textarea name="Comments" id="Comments" cols="30" rows="10" style="height: 150px;">'+comments+'</textarea>' +
@@ -519,48 +489,14 @@
     		ownedBy = (json['ownedBy'] != null) ? json['ownedBy'] : "",
     		muni = (json['muni'] != null) ? json['muni'] : "",
     		locDesc = (json['locDesc'] != null) ? json['locDesc'] : "";
-    		var accDia = Number(json['accDia']);
-	        if (accDia != "") {
-		        var accDiaFt = Math.floor(accDia);
-		        var accDiaIn = ((accDia - accDiaFt) * 12).toFixed(0);
-	        } else {
-		        var accDiaFt = 0;
-		        var accDiaIn = 0;
-	        }
+    		var accDia = (json['accDia'] != "") ? Number(json['accDia']) : "0.0";
+	     
 	        var accType = (json['accType'] != null) ? json['accType'] : "",
 	        	groundType = (json['groundType'] != null) ? json['groundType'] : "";
-	        var hpe = Number(json['hpe']);
-	        if (hpe != "") {
-		        var hpeFt = Math.floor(hpe);
-		        var hpeIn = ((hpe - hpeFt) * 12).toFixed(0);
-	        } else {
-		        var hpeFt = 0;
-		        var hpeIn = 0;
-	        }
-	        var rimEl = Number(json['rimEl']);
-	        if (rimEl != "") {
-		        var rimElFt = Math.floor(rimEl);
-		        var rimElIn = ((rimEl - rimElFt) * 12).toFixed(0);
-	        } else {
-		        var rimElFt = 0;
-		        var rimElIn = 0;
-	        }
-	        var inverEl = Number(json['inverEl']);
-	        if (inverEl != "") {
-		        var inverElFt = Math.floor(inverEl);
-		        var inverElIn = ((inverEl - inverElFt) * 12).toFixed(0);
-	        } else {
-		        var inverElFt = 0;
-		        var inverElIn = 0;
-	        }
-	        var interDrop = Number(json['interDrop']);
-	        if (interDrop != "") {
-		        var interDropFt = Math.floor(interDrop);
-		        var interDropIn = ((interDrop - interDropFt) * 12).toFixed(0);
-	        } else {
-		        var interDropFt = 0;interDrop
-		        var interDropIn = 0;
-	        }
+	        var hpe = (json['hpe'] != "") ? Number(json['hpe']) : "0.0";
+	        var rimEl = (json['rimEl'] != "") ? Number(json['rimEl']) : "0.0";
+	        var inverEl = (json['inverEl'] != "") ? Number(json['inverEl']) : "0.0";
+	        var interDrop = (json['interDrop'] != "") ? Number(json['interDrop']) : "0.0";
 	        var manholeDrop = (json['manholeDrop'] != null) ? json['manholeDrop'] : "",
 	        	wallMat = (json['wallMat'] != null) ? json['wallMat'] : "",
 	        	structShape = (json['structShape'] != null) ? json['structShape'] : "",
@@ -590,8 +526,7 @@
 							'</label>' +
 							'<br>' +
 							'<label>Rim Elevation: ' +
-						 		'<input type="text" name="RimElevation" id="RimElevationFt" style="width: 50px;" value="'+rimElFt+'"> (ft) ' +
-						 		'<input type="text" name="RimElevation" id="RimElevationIn" style="width: 50px;" value="'+rimElIn+'"> (in) ' +
+						 		'<input type="text" name="RimElevation" id="RimElevationFt" style="width: 50px;" value="'+rimEl+'"> (ft) ' +
 						 	'</label>' + 
 							'<label> Condition: ' +
 									'<select name="condition" id="mhCondition">' +
@@ -618,8 +553,7 @@
 						 		'<input type="text" name="LocationDescription" id="LocationDescription" value="'+locDesc+'">' + 
 						 	'</label>' + 
 						 	'<label>Access Diameter: ' +
-						 		'<input type="text" name="AccessDiameterFt" id="AccessDiameterFt" style="width: 50px;" value="'+accDiaFt+'"> (ft) ' +
-						 		'<input type="text" name="AccessDiameterIn" id="AccessDiameterIn" style="width: 50px;" value="'+accDiaIn+'"> (in) ' +
+						 		'<input type="text" name="AccessDiameterIn" id="AccessDiameterIn" style="width: 50px;" value="'+accDia+'"> (in) ' +
 						 	'</label>' + 
 						 	'<label>Access Type: ' +
 						 		'<select name="AccessType" id="AccessType">' +
@@ -637,19 +571,16 @@
 						 		'<input type="text" name="GroundType" id="GroundType" value="'+groundType+'">' + 
 						 	'</label>' + 
 						 	'<label>High Pipe Elevation: ' +
-						 		'<input type="text" name="HighPipeElevation" id="HighPipeElevationFt" style="width: 50px;" value="'+hpeFt+'"> (ft) ' +
-						 		'<input type="text" name="HighPipeElevation" id="HighPipeElevationIn" style="width: 50px;" value="'+hpeIn+'"> (in) ' +
+						 		'<input type="text" name="HighPipeElevation" id="HighPipeElevationFt" style="width: 50px;" value="'+hpe+'"> (ft) ' +
 						 	'</label>' + 
 						 	'<label>Invert Elevation: ' +
-						 		'<input type="text" name="InvertElevation" id="InvertElevationFt" style="width: 50px;" value="'+inverElFt+'"> (ft) ' +
-						 		'<input type="text" name="InvertElevation" id="InvertElevationIn" style="width: 50px;" value="'+inverElIn+'"> (in) ' +
+						 		'<input type="text" name="InvertElevation" id="InvertElevationFt" style="width: 50px;" value="'+inverEl+'"> (ft) ' +
 						 	'</label>' + 
 						 	'<label>Manhole Drop: ' +
 						 		'<input type="text" name="ManholeDrop" id="ManholeDrop" value="'+manholeDrop+'">' + 
 						 	'</label>' + 
 						 	'<label>Interior Drop: ' +
-						 		'<input type="text" name="InteriorDrop" id="InteriorDropFt" style="width: 50px;" value="'+interDropFt+'"> (ft) ' +
-						 		'<input type="text" name="InteriorDrop" id="InteriorDropIn" style="width: 50px;" value="'+interDropIn+'"> (in) ' +
+						 		'<input type="text" name="InteriorDrop" id="InteriorDropIn" style="width: 50px;" value="'+interDrop+'"> (in) ' +
 						 	'</label>' + 
 						 	'<label>Wall Material: ' +
 								'<select name="WallMaterial" id="WallMaterial">' +

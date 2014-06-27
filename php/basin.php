@@ -35,11 +35,8 @@
 					$lsc = floatval($rowBI['line_size']);
 					$lsc = floor($lsc) . " (ft) " . (($lsc-floor($lsc))*12) . " (in)";
 					$rimEl = floatval($rowBI['RimElevation']);
-					$rimEl = floor($rimEl) . " (ft) " . (($rimEl-floor($rimEl))*12) . " (in)";
 					$accDia = $rowBI['AccessDiameter'];
-					$accDia = floor($accDia) . " (ft) " . (($accDia-floor($accDia))*12) . " (in)";
 					$inver = $rowBI['InvertElevation'];
-					$inver = floor($inver) . " (ft) " . (($inver-floor($inver))*12) . " (in)";
  					$content .= '
 									<p class="attr"><b>Address: </b>' . $rowBI['address'] . '</p>
 									<p class="attr"><b>Length: </b>' . $rowBI['cblength'] . ' ft</p>
@@ -55,11 +52,11 @@
 									<b class="attr">Municipality: </b>' . $rowBI['Municipality'] . '<br>
 									<b class="attr">Location Description: </b>' . $rowBI['LocationDescription'] . '<br>
 									<b class="attr">CBType: </b>' . $rowBI['CBType'] . '<br>
-									<b class="attr">Top of Structure: </b>' . $rimEl . '<br>
-									<b class="attr">Diameter: </b>' . $accDia . '<br>
+									<b class="attr">Top of Structure: </b>' . $rimEl . ' (ft)<br>
+									<b class="attr">Diameter: </b>' . $accDia . ' (in)<br>
 									<b class="attr">Access Material: </b>' . $rowBI['AccessMaterial'] . '<br>
 									<b class="attr">Access Type: </b>' . $rowBI['AccessType'] . '<br>
-									<b class="attr">Invert Elevation: </b>' . $inver . '<br>
+									<b class="attr">Invert Elevation: </b>' . $inver . ' (ft)<br>
 									<b class="attr">Comments: </b>' . $rowBI['Comments'] . '<br>
 									</p>
 								 </div>

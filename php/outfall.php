@@ -39,7 +39,7 @@
 									<p class="attr"><b>Location Description: </b>' . $row['LocationDescription'] . '</p> 
 									<p class="attr"><b>Material: </b>' . $row['Material'] . '</p>
 									<p class="attr"><b>Receiving Water: </b>' . $row['ReceivingWater'] . '</p>
-									<p class="attr"><b>Diameter: </b>' . $row['Diameter'] . '</p>
+									<p class="attr"><b>Diameter: </b>' . $row['Diameter'] . ' (in)</p>
 									<p class="attr"><b>Comments: </b>' . $row['Comments'] . '</p>
 								 </div>
 								 <div style="float: left; width="100%"><img class="basinImg" src="../images/' . $oid . '.jpg" alt=""></div>
