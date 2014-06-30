@@ -41,7 +41,7 @@
 									<p class="attr"><b>Address: </b>' . $row['address'] . ' </p>
 									<p class="attr"><b>Rim Elevation: </b>' . $rimEl . ' (ft)</p>
 									<p class="attr"><b>Condition: </b>' . $row['condition'] . ' </p>
-									<button type="button" id="addAtt">Addtional Atrributes <span class="glyphicon glyphicon-plus-sign"></span></button><br><br>
+									<button type="button" id="addAtt">Additional Attributes <span class="glyphicon glyphicon-plus-sign"></span></button><br><br>
 									<p id="testTogAtt" style="display: none">
 									<b class="attr">Owned By: </b>' . $row['OwnedBy'] . '<br>
 									<b class="attr">Municipality: </b>' . $row['Municipality'] . '<br>

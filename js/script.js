@@ -334,7 +334,7 @@
 									'<option value="Needs Maintenance">Needs Maintenance</option>' +
 								'</select>' +
 							'</label><br><br>' +
-						 	'<button type="button" id="addInfo">Addtional Atrributes <span class="glyphicon glyphicon-plus-sign"></span></button><br><p id="testTog" style="display: none">' + 
+						 	'<button type="button" id="addInfo">Additional Attributes <span class="glyphicon glyphicon-plus-sign"></span></button><br><p id="testTog" style="display: none">' + 
 						 	'<br><label>Owned By: ' +
 						 		'<select name="OwnedBy" id="OwnedBy">' +
 									'<option value=""></option>'+
@@ -536,7 +536,7 @@
 									'<option value="Needs Maintenance">Needs Maintenance</option>' +
 								'</select>' +
 							'</label><br><br>' +
-							'<button type="button" id="addInfo">Addtional Atrributes <span class="glyphicon glyphicon-plus-sign"></span></button><br><p id="testTog" style="display: none">' + 
+							'<button type="button" id="addInfo">Additional Attributes <span class="glyphicon glyphicon-plus-sign"></span></button><br><p id="testTog" style="display: none">' + 
 							'<br><label>Owned By: ' +
 						 		'<select name="OwnedBy" id="OwnedBy">' +
 									'<option value=""></option>'+
