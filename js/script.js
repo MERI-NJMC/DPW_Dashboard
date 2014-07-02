@@ -3,6 +3,8 @@
 (function()
 {
 	"use strict";
+	
+
 
 	function queryLayer(map, evt)
 	{
@@ -696,7 +698,7 @@
         	$("#testTog").toggle("fast");
         });
     }
-    
+
 	function updateLayers(map, checkbox)
 	{
 		var layers = map.getLayer('layer'),
@@ -797,6 +799,47 @@
 		{
 			popup = new PopupMobile(null, document.getElementById("popup"));
 		}
+		$(document).ready(function() {
+			
+			$("#muniZoom").change(function() {
+				var muni = $("#muniZoom :selected").text();
+				muniZoom(muni);
+			});
+		});
+		function muniZoom(muni){
+	    	if(muni == "Carlstadt") {
+	    		map.centerAndZoom([-74.0623, 40.8264], 14);
+	    	} else if (muni == "East Rutherford") {
+	    		map.centerAndZoom([-74.0850, 40.8171], 14);
+	    	} else if (muni == "Little Ferry") {
+	    		map.centerAndZoom([-74.0362, 40.8443], 14);
+	    	} else if (muni == "Lyndhurst") {
+	    		map.centerAndZoom([-74.1132, 40.7980], 14);
+	    	} else if (muni == "Moonachie") {
+	    		map.centerAndZoom([-74.0577, 40.8414], 14);
+	    	} else if (muni == "North Arlington") {
+	    		map.centerAndZoom([-74.1262, 40.7863], 14);
+	    	} else if (muni == "Ridgefield") {
+	    		map.centerAndZoom([-74.0151, 40.8323], 14);
+	    	} else if (muni == "Rutherford") {
+	    		map.centerAndZoom([-74.1060, 40.8203], 14);
+	    	} else if (muni == "South Hackensack") {
+	    		map.centerAndZoom([-74.0481, 40.8648], 14);
+	    	} else if (muni == "Teterboro") {
+	    		map.centerAndZoom([-74.0604, 40.8530], 14);
+	    	} else if (muni == "Jersey City") {
+	    		map.centerAndZoom([-74.0710, 40.7140], 14);
+	    	} else if (muni == "Kearny") {
+	    		map.centerAndZoom([-74.1209, 40.7537], 14);
+	    	} else if (muni == "North Bergen") {
+	    		map.centerAndZoom([-74.0250, 40.7942], 14);
+	    	} else if (muni == "Secaucus") {
+	    		map.centerAndZoom([-74.0676, 40.7820], 14);
+	    	}
+
+	    	
+			geoLocate.clear();
+	    }
 		map = new Map("map", {
 			basemap: "satellite",
 			center: [-74.08456781356876, 40.78364440736023],			

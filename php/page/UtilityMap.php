@@ -84,6 +84,14 @@
 				top: 20px;
 				z-index: 2;
 			}
+			#muniCon
+			{
+				display: block;
+				left: 325px;
+				position: absolute;
+				top: 21px;
+				z-index: 2;
+			}
 			.reports
 			{
 				background-color: rgba(255, 255, 255, .8);
@@ -109,7 +117,6 @@
 				height: 100%;
 				background: #FFFFFF;
 				overflow-y: auto;
-  				
 				border-radius: 15px; 
 			}
 
@@ -135,6 +142,25 @@
         <script src="js/script.js"></script>
 		 <script src="js/main.js"></script>
         <div id="search" class="search"></div>
+        <div id="muniCon">
+        	<select name="muniZoom" id="muniZoom">
+	    		<option value="default">Municipality Zoom</option>
+	    		<option value="Carlstadt">Carlstadt</option>
+				<option value="East Rutherford">East Rutherford</option>
+				<option value="Little Ferry">Little Ferry</option>
+				<option value="Lyndhurst">Lyndhurst</option>
+				<option value="Moonachie">Moonachie</option>
+				<option value="North Arlington">North Arlington</option>
+				<option value="Ridgefield">Ridgefield</option>
+				<option value="Rutherford">Rutherford</option>
+				<option value="South Hackensack">South Hackensack</option>
+				<option value="Teterboro">Teterboro</option>
+				<option value="Jersey City">Jersey City</option>
+				<option value="Kearny">Kearny</option>
+				<option value="North Bergen">North Bergen</option>
+				<option value="Secaucus">Secaucus</option>
+        	</select>
+        </div>
 		<div id="map" class="map">
 			<div id="LocateButton" class="LocateButton hover"></div>
 			<div id="extent" class="extent hover"></div>
