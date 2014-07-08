@@ -72,25 +72,27 @@
 				height: 100%;
 				left: 0;
 				width: 100%;
-				position: absolute;
-				top: 0;
-				overflow: visible;
+				position: fixed;
+				top: 50px;
+				overflow: hidden;
+			}
+			#mapCon {
+				overflow: hidden;
 			}
 			#search
 			{
 				display: block;
-				left: 75px;
-				position: absolute;
-				top: 20px;
+				margin-top: 10px;
+				margin-right: 5px;
 				z-index: 2;
+				float: right;
 			}
 			#muniCon
 			{
-				display: block;
-				left: 325px;
-				position: absolute;
-				top: 21px;
-				z-index: 2;
+				float: left;
+				margin-top: 8px;
+				margin-right: 10px;
+
 			}
 			.reports
 			{
@@ -119,6 +121,17 @@
 				overflow-y: auto;
 				border-radius: 15px; 
 			}
+			#navBar {
+				width: 100%;
+				height: 50px;
+				z-index: 2;
+				background-color: #f4f6f9;
+				position: absolute;
+				float: left;
+				margin-bottom: 10px;
+				padding-left: 30px;
+				padding-right: 30px;
+			}
 
 		</style>
 		<script>
@@ -141,26 +154,35 @@
       
         <script src="js/script.js"></script>
 		 <script src="js/main.js"></script>
-        <div id="search" class="search"></div>
-        <div id="muniCon">
-        	<select name="muniZoom" id="muniZoom">
-	    		<option value="default">Municipality Zoom</option>
-	    		<option value="Carlstadt">Carlstadt</option>
-				<option value="East Rutherford">East Rutherford</option>
-				<option value="Little Ferry">Little Ferry</option>
-				<option value="Lyndhurst">Lyndhurst</option>
-				<option value="Moonachie">Moonachie</option>
-				<option value="North Arlington">North Arlington</option>
-				<option value="Ridgefield">Ridgefield</option>
-				<option value="Rutherford">Rutherford</option>
-				<option value="South Hackensack">South Hackensack</option>
-				<option value="Teterboro">Teterboro</option>
-				<option value="Jersey City">Jersey City</option>
-				<option value="Kearny">Kearny</option>
-				<option value="North Bergen">North Bergen</option>
-				<option value="Secaucus">Secaucus</option>
-        	</select>
+        <div id="navBar">
+        	<div id="imgCon"><img id="logo" src="css/img/map-logo-57x57.png" alt=""></div>
+        	<div id="logoFont">DPW Dashboard</div>
+        	<div style="float: right;">
+	        	<div id="muniCon" >
+		        	<select name="muniZoom" id="muniZoom" class="form-control">
+			    		<option value="default">Municipality Zoom</option>
+			    		<option value="Carlstadt">Carlstadt</option>
+						<option value="East Rutherford">East Rutherford</option>
+						<option value="Little Ferry">Little Ferry</option>
+						<option value="Lyndhurst">Lyndhurst</option>
+						<option value="Moonachie">Moonachie</option>
+						<option value="North Arlington">North Arlington</option>
+						<option value="Ridgefield">Ridgefield</option>
+						<option value="Rutherford">Rutherford</option>
+						<option value="South Hackensack">South Hackensack</option>
+						<option value="Teterboro">Teterboro</option>
+						<option value="Jersey City">Jersey City</option>
+						<option value="Kearny">Kearny</option>
+						<option value="North Bergen">North Bergen</option>
+						<option value="Secaucus">Secaucus</option>
+		        	</select>
+	        	</div>
+	        	<div id="search" class="search"></div>
+	        </div>
+
         </div>
+
+        <div id="mapCon">
 		<div id="map" class="map">
 			<div id="LocateButton" class="LocateButton hover"></div>
 			<div id="extent" class="extent hover"></div>
@@ -170,6 +192,7 @@
 			<div id="popup" class="popup" ></div>
 			<div id="list" class="list"></div>
 			<iframe style="display:none;" src="" name="myiframe"></iframe>
+		</div>
 		</div>
 		<div id="sessionU" hidden><?php echo $_SESSION['user']; ?></div>
 		<div>	
