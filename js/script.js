@@ -812,21 +812,21 @@
 	    	} else if (muni == "East Rutherford") {
 	    		map.centerAndZoom([-74.0850, 40.8171], 14);
 	    	} else if (muni == "Little Ferry") {
-	    		map.centerAndZoom([-74.0362, 40.8443], 14);
+	    		map.centerAndZoom([-74.0362, 40.8443], 15);
 	    	} else if (muni == "Lyndhurst") {
 	    		map.centerAndZoom([-74.1132, 40.7980], 14);
 	    	} else if (muni == "Moonachie") {
-	    		map.centerAndZoom([-74.0577, 40.8414], 14);
+	    		map.centerAndZoom([-74.059,40.841460], 15);
 	    	} else if (muni == "North Arlington") {
-	    		map.centerAndZoom([-74.1262, 40.7863], 14);
+	    		map.centerAndZoom([-74.1262, 40.7863], 15);
 	    	} else if (muni == "Ridgefield") {
-	    		map.centerAndZoom([-74.0151, 40.8323], 14);
+	    		map.centerAndZoom([-74.0151, 40.8323], 15);
 	    	} else if (muni == "Rutherford") {
 	    		map.centerAndZoom([-74.1060, 40.8203], 14);
 	    	} else if (muni == "South Hackensack") {
-	    		map.centerAndZoom([-74.0481, 40.8648], 14);
+	    		map.centerAndZoom([-74.058733,40.841460], 14);
 	    	} else if (muni == "Teterboro") {
-	    		map.centerAndZoom([-74.0604, 40.8530], 14);
+	    		map.centerAndZoom([-74.0604, 40.8530], 15);
 	    	} else if (muni == "Jersey City") {
 	    		map.centerAndZoom([-74.0710, 40.7140], 14);
 	    	} else if (muni == "Kearny") {
