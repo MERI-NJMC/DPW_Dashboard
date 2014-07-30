@@ -757,13 +757,13 @@
 					checkboxlayer.id = "layer-" + layers[index].id;
 					checkboxlayer.className = "checkbox";
 					checkboxlayer.value = layers[index].id;
-					labellayer = '<label for="' + checkboxlayer.id + '">' + layers[index].name + '</label>';
+					labellayer = '<span for="' + checkboxlayer.id + '">' + layers[index].name + '</span>';
 					legendimg = document.createElement("img");
 					legendimg.className = "legend-image";
 					legendimg.src = "data:" + legend[layers[index].id].legend[0].contentType + ";base64," + legend[layers[index].id].legend[0].imageData;
 					lilayer.appendChild(checkboxlayer);
-					lilayer.innerHTML += labellayer;
 					lilayer.appendChild(legendimg);
+					lilayer.innerHTML += labellayer;
 					listlayers.appendChild(lilayer);
 					object[layers[index].id] = layers[index].defaultVisibility;
 				}

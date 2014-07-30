@@ -185,10 +185,10 @@
         <div id="mapCon">
 		<div id="map" class="map">
 			<div id="LocateButton" class="LocateButton hover"></div>
-			<div id="extent" class="extent hover"></div>
-			<div id="layers" class="layers hover"></div>
-			<a target="_blank" href="reportSelect.html"><div id="reports" class="reports hover"></div></a>
-			<div id="Logoff" class="logoff hover"></div>
+			<div id="extent" class="extent hover" title='Reset Extent'></div>
+			<div id="layers" class="layers hover" title='Layer Selector'></div>
+			<a target="_blank" href="reportSelect.html"><div id="reports" class="reports hover" title='Reports by Municipality'></div></a>
+			<div id="Logoff" class="logoff hover" title="Logoff"></div>
 			<div id="popup" class="popup" ></div>
 			<div id="list" class="list"></div>
 			<iframe style="display:none;" src="" name="myiframe"></iframe>
