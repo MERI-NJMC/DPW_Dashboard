@@ -4,7 +4,8 @@
 		<meta charset="UTF-8">
 		<meta name="author" content="Jose L. Baez">
 		<meta name="description" content="Map only utilities">
-		<meta name="viewport" content="width=device-width, user-scalable=no">
+		<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, 
+ maximum-scale=1.0">
 		<link rel="stylesheet" href="http://js.arcgis.com/3.9/js/esri/css/esri.css"/>
         <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css"/>
        

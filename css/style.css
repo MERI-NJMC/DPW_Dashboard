@@ -106,3 +106,16 @@
 {
 	z-index: 50;
 }
+
+@media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (min-resolution: 192dpi), all and (orientation : portrait) { 
+	#search {
+		margin-top: 23px;
+		margin-right: 35px;
+	}
+
+	#muniCon {
+		display: none;
+	}
+	
+	
+}	
