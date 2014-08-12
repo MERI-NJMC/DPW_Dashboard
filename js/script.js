@@ -777,7 +777,7 @@
 			}
 		}
 	}
-	require(["dojo/on", "esri/map", "esri/dijit/LocateButton", "esri/dijit/Geocoder", "esri/dijit/Popup", "esri/dijit/PopupMobile", "esri/layers/ArcGISDynamicMapServiceLayer"], function(on, Map, LocateButton, Geocoder, Popup, PopupMobile, ArcGISDynamicMapServiceLayer)
+	require(["dojo/on", "esri/map", "esri/dijit/LocateButton", "esri/dijit/Geocoder", "esri/dijit/Popup", "esri/dijit/PopupMobile", "esri/layers/ArcGISDynamicMapServiceLayer", "esri/graphic", "esri/symbols/SimpleMarkerSymbol","esri/geometry/screenUtils", "dojo/dom","dojo/dom-construct","dojo/query","dojo/_base/Color","dojo/domReady!"], function(on, Map, LocateButton, Geocoder, Popup, PopupMobile, ArcGISDynamicMapServiceLayer, Graphic, SimpleMarkerSymbol, screenUtils, dom, domConstruct, query, Color)
 	{
 		var geoLocate,
 			geocoder,
@@ -865,7 +865,21 @@
 				sourceCountry: "USA"
 			},
 			map: map,
+			autoComplete: true,
         }, "search");
+		geocoder.on("select", showLocation);
+
+		function showLocation(evt) {
+			map.graphics.clear();
+			var point = evt.result.feature.geometry;
+			var symbol = new SimpleMarkerSymbol()
+			.setStyle("square")
+			.setColor(new Color([255,0,0,0.5]));
+			var graphic = new Graphic(point, symbol);
+			map.graphics.add(graphic);
+		}
+
+
         geocoder.startup();
 		geoLocate.startup();
 		document.getElementById('Logoff').addEventListener('click', function() {
