@@ -33,8 +33,7 @@ function validateBasin() {
 	var length = document.getElementById('length'),
 	    depth = document.getElementById('depth'),
 	    width = document.getElementById('width'),
-	    lineSizeFt = document.getElementById('lineSizeFt'),
-	    lineSizeIn = document.getElementById('lineSizeIn'), 
+	    lineSize = document.getElementById('lineSize'),
 	    rimElFt = document.getElementById('RimElevationFt'),
 	    accDiaIn = document.getElementById('AccessDiameterIn'),
 	    inverFt = document.getElementById('InvertElevationFt');
@@ -47,7 +46,7 @@ function validateBasin() {
 	} else if (isNaN(Number(width.value))) {
 		alert("Width is not a number");
 		return false;
-	} else if(isNaN(Number(lineSizeFt.value)) || isNaN(Number(lineSizeIn.value))) {
+	} else if(isNaN(Number(lineSize.value))) {
 		alert("The line size input is not a number");
 		return false;
 	} else if(isNaN(Number(rimElFt.value))) {
@@ -97,20 +96,13 @@ function postOpLog() {
 
 function postBasin() {
 	if(validateBasin()) {
-		var xhr = new XMLHttpRequest();
-		xhr.open('POST', 'php/updatebasin.php', false);
-		xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded");
-
-
 		var basin = document.getElementsByClassName("basinID"),
 			address = document.getElementById("address");
 			width = document.getElementById("width"), 
 			length = document.getElementById("length"),
 			depth = document.getElementById("depth"),
 			size = document.getElementById("cube"),
-			lineSizeFt = document.getElementById("lineSizeFt"),
-			lineSizeIn = document.getElementById("lineSizeIn"),
-			lineSize = Number(lineSizeFt.value) + (Number(lineSizeIn.value)/12),
+			lineSize = document.getElementById("lineSize"),
 			drain = document.getElementById("drainsTo"),
 			condition = document.getElementById("condition"),
 			ownedBy = document.getElementById("OwnedBy"),
@@ -122,23 +114,48 @@ function postBasin() {
 			accMat = document.getElementById("AccessMaterial"),
 			accType = document.getElementById("AccessType"), 
 			inverElFt = document.getElementById("InvertElevationFt"),
-			comments = document.getElementById("Comments"); 
-
-
-		xhr.onreadystatechange = function () {
-		    if (xhr.readyState < 4)                         
-		        console.log("Loading"); 
-		    else if (xhr.readyState === 4) {                
-		        if (xhr.status == 200 && xhr.status < 300)  
-		            console.log(xhr.responseText);
-		    }
-		}
-
-		xhr.send("basin=" + basin[0].innerHTML + "&address=" + address.value + "&width=" + Number(width.value) + "&length=" + Number(length.value) + "&depth=" + Number(depth.value) + "&size=" + Number(size.value) + "&lineSize=" + lineSize + "&drain=" + drain.value + "&condition=" + condition.value +
-					"&ownedBy=" + ownedBy.value + "&muni=" + muni.value + "&locDesc=" + locDesc.value +
-					"&cbType=" + cbType.value + "&rimEl=" + Number(rimElFt.value) + "&accDia=" + Number(accDiaIn.value) + "&accMat=" + accMat.value +
-					"&accType=" + accType.value + "&inverEl=" + Number(inverElFt.value) + "&comments=" + comments.value);
-		alert("Info Saved");
+			comments = document.getElementById("Comments"),
+			message = 'This is a test of an approval system for the DPW dashboard. If you click the link below it will take you to a form to look over the data inputed which you can edit if there are inaccuracy. Email me back when you go through the process of approval and try changing something too. Thanks.\n\n',
+			url = baseURL() + "php/updatebasin.php?basin=" + basin[0].innerHTML + "&address=" + encodeURIComponent(address.value) + "&width=" + Number(width.value) + "&length=" + Number(length.value) + "&depth=" + Number(depth.value) + "&size=" + Number(size.value) + "&lineSize=" + Number(lineSize.value) + "&drain=" + encodeURIComponent(drain.value) + "&condition=" + encodeURIComponent(condition.value) +
+					"&ownedBy=" + encodeURIComponent(ownedBy.value) + "&muni=" + encodeURIComponent(muni.value) + "&locDesc=" + encodeURIComponent(locDesc.value) +
+					"&cbType=" + encodeURIComponent(cbType.value) + "&rimEl=" + Number(rimElFt.value) + "&accDia=" + Number(accDiaIn.value) + "&accMat=" + encodeURIComponent(accMat.value) +
+					"&accType=" + encodeURIComponent(accType.value) + "&inverEl=" + Number(inverElFt.value) + "&comments=" + encodeURIComponent(comments.value),
+					link = '<a href="'+url+'">Click Here!</a>';
+		alert("Info Sent for Approval!");
+		console.log(link);
+		$.ajax({
+			  type: "POST",
+			  url: "https://mandrillapp.com/api/1.0/messages/send.json",
+			  data: {
+			    'key': 'vauMf2Si9Ovrs1-DrrS61Q',
+			    'message': {
+			      'from_email': 'steven.birkner@njmeadowlands.gov',
+			      'to': [
+			          {
+			            'email': 'Dominador.elefante@njmeadowlands.gov',
+			            'type': 'to',
+			          },
+			          {
+			            'email': 'Stephanie.Bosits@njmeadowlands.gov',
+			            'type': 'to',
+			          },
+			          {
+			            'email': 'Sal.Kojak@njmeadowlands.gov',
+			            'type': 'to',
+			          },
+			          {
+			            'email': 'steven.birkner@njmeadowlands.gov',
+			            'type': 'to',
+			          },
+			        ],
+			      'autotext': 'true',
+			      'subject': 'TEST: A utility needs your approval!',
+			      'html': message+'\n\n'+link,
+			    }
+			  }
+			 }).done(function(response) {
+			   console.log(response); // if you're into that sorta thing
+			 });
 		return false;
 	} else {
 		return false;
@@ -147,10 +164,6 @@ function postBasin() {
 
 function postManhole() {
 	if(validateManhole()) {
-		var xhr = new XMLHttpRequest();
-		xhr.open('POST', 'php/updateManhole.php', false);
-		xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded");
-
 		var mid = document.getElementsByClassName("manholeID"),
 			address = document.getElementById("address"),
 			condition = document.getElementById("mhCondition"),
@@ -169,24 +182,48 @@ function postManhole() {
 			structShape = document.getElementById("StructuralShape"),
 			manholeType = document.getElementById("ManholeType"),
 			metered = document.getElementById("Metered"),
-			comments = document.getElementById("Comments");
-
-
-
-		xhr.onreadystatechange = function () {
-		    if (xhr.readyState < 4)                         
-		        console.log("Loading"); 
-		    else if (xhr.readyState === 4) {                
-		        if (xhr.status == 200 && xhr.status < 300)  
-		            console.log(xhr.responseText);
-		    }
-		}
-
-		xhr.send("mid=" + mid[0].innerHTML + "&address=" + address.value + "&condition=" + condition.value + "&ownedBy=" + ownedBy.value +
-				"&muni=" + muni.value + "&locDesc=" + locDesc.value + "&accDia=" + Number(accDiaIn.value) + "&accType=" + accType.value + "&groundType=" + groundType.value + "&hpe=" + Number(hpeFt.value) + "&rimEl=" + Number(rimElFt.value) + 
-				"&inverEl=" + Number(inverElFt.value) + "&manholeDrop=" + manholeDrop.value + "&interDrop=" + Number(interDropIn.value) + "&wallMat=" + wallMat.value + "&structShape=" + structShape.value + "&manholeType=" + manholeType.value +
-				"&metered=" + Number(metered.value) + "&comments=" + comments.value);
-		alert("Info Saved");
+			comments = document.getElementById("Comments"),
+			message = 'Please click the link and review this utility for any inaccuracies. \n',
+			url = baseURL() + "php/updatemanhole.php?mid=" + mid[0].innerHTML + "&address=" + encodeURIComponent(address.value) + "&condition=" + encodeURIComponent(condition.value) + "&ownedBy=" + encodeURIComponent(ownedBy.value) +
+				"&muni=" + encodeURIComponent(muni.value) + "&locDesc=" + encodeURIComponent(locDesc.value) + "&accDia=" + Number(accDiaIn.value) + "&accType=" + encodeURIComponent(accType.value) + "&groundType=" + encodeURIComponent(groundType.value) + "&hpe=" + Number(hpeFt.value) + "&rimEl=" + Number(rimElFt.value) + 
+				"&inverEl=" + Number(inverElFt.value) + "&manholeDrop=" + encodeURIComponent(manholeDrop.value) + "&interDrop=" + Number(interDropIn.value) + "&wallMat=" + encodeURIComponent(wallMat.value) + "&structShape=" + encodeURIComponent(structShape.value) + "&manholeType=" + encodeURIComponent(manholeType.value) +
+				"&metered=" + Number(metered.value) + "&comments=" + encodeURIComponent(comments.value),
+			link = '<a href="'+url+'">Click Here!</a>';
+		alert("Info Sent for Approval!");
+		console.log(link);
+		$.ajax({
+			  type: "POST",
+			  url: "https://mandrillapp.com/api/1.0/messages/send.json",
+			  data: {
+			    'key': 'vauMf2Si9Ovrs1-DrrS61Q',
+			    'message': {
+			      'from_email': 'steven.birkner@njmeadowlands.gov',
+			      'to': [
+			          // {
+			          //   'email': 'Dominador.elefante@njmeadowlands.gov',
+			          //   'type': 'to',
+			          // },
+			          // {
+			          //   'email': 'Stephanie.Bosits@njmeadowlands.gov',
+			          //   'type': 'to',
+			          // },
+			          // {
+			          //   'email': 'Sal.Kojak@njmeadowlands.gov',
+			          //   'type': 'to',
+			          // },
+			          {
+			            'email': 'steven.birkner@njmeadowlands.gov',
+			            'type': 'to',
+			          },
+			        ],
+			      'autotext': 'true',
+			      'subject': 'TEST: A utility needs your approval!',
+			      'html': message+'\n\n'+link,
+			    }
+			  }
+			 }).done(function(response) {
+			   console.log(response); // if you're into that sorta thing
+			 });
 		return false;
 	}
 	return false;
@@ -245,10 +282,6 @@ function postManOpLog() {
 }
 function postOutfall() {
 	if(validateOutfall()) {
-		var xhr = new XMLHttpRequest();
-		xhr.open('POST', 'php/updateOutfall.php', false);
-		xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded");
-
 		var oid = document.getElementsByClassName("outfallID"),
 			ownedBy = document.getElementById("OwnedBy"),
 			muni = document.getElementById("muni"),
@@ -256,20 +289,48 @@ function postOutfall() {
 			material = document.getElementById("Material"),
 			recWater = document.getElementById("recWater"),
 			comments = document.getElementById("Comments"),
-			diaIn = document.getElementById("diaIn");
-			xhr.onreadystatechange = function () {
-		    if (xhr.readyState < 4)                         
-			        console.log("Loading"); 
-			    else if (xhr.readyState === 4) {                
-			        if (xhr.status == 200 && xhr.status < 300)  
-			            console.log(xhr.responseText);
+			diaIn = document.getElementById("diaIn"),
+			message = 'Please click the link and review this utility for any inaccuracies. \n',
+			url = baseURL() + "php/updateOutfall.php?oid=" + oid[0].innerHTML + "&ownedBy=" + encodeURIComponent(ownedBy.value) + "&muni=" + encodeURIComponent(muni.value) +
+			"&locDesc=" + encodeURIComponent(locDesc.value) + "&material=" + encodeURIComponent(material.value) + "&recWater=" + encodeURIComponent(recWater.value) + "&dia=" + encodeURIComponent(diaIn.value) + 
+			"&comments=" + encodeURIComponent(comments.value),
+		    link = '<a href="'+url+'">Click Here!</a>';
+		alert("Info Sent for Approval!");
+		console.log(link);
+		$.ajax({
+			  type: "POST",
+			  url: "https://mandrillapp.com/api/1.0/messages/send.json",
+			  data: {
+			    'key': 'vauMf2Si9Ovrs1-DrrS61Q',
+			    'message': {
+			      'from_email': 'steven.birkner@njmeadowlands.gov',
+			      'to': [
+			          // {
+			          //   'email': 'Dominador.elefante@njmeadowlands.gov',
+			          //   'type': 'to',
+			          // },
+			          // {
+			          //   'email': 'Stephanie.Bosits@njmeadowlands.gov',
+			          //   'type': 'to',
+			          // },
+			          // {
+			          //   'email': 'Sal.Kojak@njmeadowlands.gov',
+			          //   'type': 'to',
+			          // },
+			          {
+			            'email': 'steven.birkner@njmeadowlands.gov',
+			            'type': 'to',
+			          },
+			        ],
+			      'autotext': 'true',
+			      'subject': 'TEST: A utility needs your approval!',
+			      'html': message+'\n\n'+link,
 			    }
-			}
+			  }
+			 }).done(function(response) {
+			   console.log(response); // if you're into that sorta thing
+			 });	
 		
-		xhr.send("oid=" + oid[0].innerHTML + "&ownedBy=" + ownedBy.value + "&muni=" + muni.value +
-			"&locDesc=" + locDesc.value + "&material=" + material.value + "&recWater=" + recWater.value + "&dia=" + diaIn.value + 
-			"&comments=" + comments.value);
-		alert("Info Saved");
 		return false;
 	}
 
@@ -309,10 +370,6 @@ function postOutOpLog() {
 
 function postStormline() {
 	if(validateSline()) {
-		var xhr = new XMLHttpRequest();
-		xhr.open('POST', 'php/updateSline.php', false);
-		xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded");
-
 		var slid = document.getElementsByClassName("slineID"),
 			ownedBy = document.getElementById("OwnedBy"),
 			muni = document.getElementById("muni"), 
@@ -322,18 +379,48 @@ function postStormline() {
 			height = document.getElementById("height"),
 			width = document.getElementById("width"),
 			usi = document.getElementById("usi"),
-			dsi = document.getElementById("dsi");
-		xhr.onreadystatechange = function () {
-		    if (xhr.readyState < 4)                         
-			        console.log("Loading"); 
-			    else if (xhr.readyState === 4) {                
-			        if (xhr.status == 200 && xhr.status < 300)  
-			            console.log(xhr.responseText);
+			dsi = document.getElementById("dsi"),
+			message = 'Please click the link and review this utility for any inaccuracies. \n',
+			url = baseURL() + "php/updateSline.php?slid=" + slid[0].innerHTML + "&ownedBy=" + encodeURIComponent(ownedBy.value) + "&muni=" + encodeURIComponent(muni.value) + "&material=" + encodeURIComponent(material.value) +
+			"&css=" + encodeURIComponent(css.value) + "&dia=" + Number(dia.value) + "&height=" + Number(height.value) + "&width=" + Number(width.value) + "&usi=" + Number(usi.value) + "&dsi=" + Number(dsi.value),
+		    link = '<a href="'+url+'">Click Here!</a>';
+		alert("Info Sent for Approval!");
+		console.log(link);
+		$.ajax({
+			  type: "POST",
+			  url: "https://mandrillapp.com/api/1.0/messages/send.json",
+			  data: {
+			    'key': 'vauMf2Si9Ovrs1-DrrS61Q',
+			    'message': {
+			      'from_email': 'steven.birkner@njmeadowlands.gov',
+			      'to': [
+			          // {
+			          //   'email': 'Dominador.elefante@njmeadowlands.gov',
+			          //   'type': 'to',
+			          // },
+			          // {
+			          //   'email': 'Stephanie.Bosits@njmeadowlands.gov',
+			          //   'type': 'to',
+			          // },
+			          // {
+			          //   'email': 'Sal.Kojak@njmeadowlands.gov',
+			          //   'type': 'to',
+			          // },
+			          {
+			            'email': 'steven.birkner@njmeadowlands.gov',
+			            'type': 'to',
+			          },
+			        ],
+			      'autotext': 'true',
+			      'subject': 'TEST: A utility needs your approval!',
+			      'html': message+'\n\n'+link,
 			    }
-			}
-		xhr.send("slid=" + slid[0].innerHTML + "&ownedBy=" + ownedBy.value + "&muni=" + muni.value + "&material=" + material.value +
-			"&css=" + css.value + "&dia=" + Number(dia.value) + "&height=" + Number(height.value) + "&width=" + Number(width.value) + "&usi=" + Number(usi.value) + "&dsi=" + Number(dsi.value));
-		alert("Info saved");
+			  }
+			 }).done(function(response) {
+			   console.log(response); // if you're into that sorta thing
+			 });
+	
+	
 		return false;
 	}
 	return false;

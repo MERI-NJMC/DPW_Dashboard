@@ -153,8 +153,9 @@
        
         <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
       
+        <script src="js/baseURL.js"></script>
         <script src="js/script.js"></script>
-		 <script src="js/main.js"></script>
+		<script src="js/main.js"></script>
         <div id="navBar">
         	<div id="imgCon"><img id="logo" src="css/img/map-logo-57x57.png" alt=""></div>
         	<div id="logoFont">DPW Dashboard</div>

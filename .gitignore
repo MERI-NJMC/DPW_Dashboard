@@ -37,3 +37,4 @@ Icon
 .Trashes
 php/dbConnection.php
 /images/
+js/baseURL.js

@@ -278,13 +278,6 @@
          var depth = (json['depth'] != null) ? json['depth'] : "0.0";
          var size = (json['size'] != null) ? json['size'] : "0.0";
          var line_size = Number(json['line_size']);
-         if (line_size != "") {
-         	var line_sizeFt = Math.floor(line_size);
-         	var line_sizeIn = ((line_size - line_sizeFt) * 12).toFixed(0);
-         } else {
-         	var line_sizeFt = 0;
-         	var line_sizeIn = 0;
-         }
          var drains = json['drains_to'];
          var select = '<select name="drainsTo" id="drainsTo"><option value=""></option> +<option value="Ackerman\'s Creek">Ackerman\'s Creek</option><option value="Bellman\'s Creek">Bellman\'s Creek</option><option value="Berry\'s Creek">Berry\'s Creek</option><option value="Berry\'s Creek Canal">Berry\'s Creek Canal</option><option value="Cromakill Creek">Cromakill Creek</option><option value="East Riser Ditch">East Riser Ditch</option><option value="Frank\'s Creek">Frank\'s Creek</option><option value="Hackensack River">Hackensack River</option><option value="Hudson River">Hudson River</option><option value="Kingsland Creek">Kingsland Creek</option><option value="Losen Slote Creek">Losen Slote Creek</option><option value="Mary Ann Creek">Mary Ann Creek</option><option value="Moonachie Creek">Moonachie Creek</option><option value="Nevertouch Creek">Nevertouch Creek</option><option value="Overpeck Creek">Overpeck Creek</option><option value="Passaic River">Passaic River</option><option value="Paunpeck Creek">Paunpeck Creek</option><option value="Peach Island Creek">Peach Island Creek</option><option value="Penhorn Creek">Penhorn Creek</option><option value="Walden Swamp Creek">Walden Swamp Creek</option><option value="West River Ditch">West River Ditch</option><option value="Wolf\'s Creek">Wolf\'s Creek</option><option value="Unnamed Tributary">Unnamed Tributary</option></select>';
          var condition = json['condition'];
@@ -319,13 +312,12 @@
 						 	'</label>' +
 						 	'<label for="depth">Depth (ft): ' + 
 						 		'<input class="target" type="text" name="depth" id="depth"  value="'+ depth +'" autocomplete="off"></label>' +
-						 	'<label for="cube">Cubic Feet: <button type="button" onClick="cubicCalc()" id="gen">Generate</button>' +
+						 	'<label for="cube">Volume: <button type="button" onClick="cubicCalc()" id="gen">Generate</button>' +
 						 		'<div style="margin-bottom: 10px;"></div>' +
 						 		'<input type="text" name="cube" id="cube" disabled  value="'+ size +'" autocomplete="off">'+
 						 	'</label>' +
-						 	'<label for="lineSize">Line Size Connection: ' +
-						 		'<input type="text" name="lineSizeFt" id="lineSizeFt" style="width: 50px;"  value="'+ line_sizeFt +'" autocomplete="off"> (ft) ' +
-						 		'<input type="text" name="lineSizeIn" id="lineSizeIn" style="width: 50px;"  value="'+ line_sizeIn +'" autocomplete="off"> (in) ' +
+						 	'<label for="lineSize">Line Size Connection (ft): ' +
+						 		'<input type="text" name="lineSize" id="lineSize" style="width: 50px;"  value="'+ line_size +'" autocomplete="off">' +
 						 	'</label>' +
 						 	'<label for="drainsTo">Drains To: '+ select +'</label><br>' + 
 						 	'<label> Condition: ' +
