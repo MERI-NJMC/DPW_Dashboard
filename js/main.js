@@ -199,18 +199,18 @@ function postManhole() {
 			    'message': {
 			      'from_email': 'steven.birkner@njmeadowlands.gov',
 			      'to': [
-			          // {
-			          //   'email': 'Dominador.elefante@njmeadowlands.gov',
-			          //   'type': 'to',
-			          // },
-			          // {
-			          //   'email': 'Stephanie.Bosits@njmeadowlands.gov',
-			          //   'type': 'to',
-			          // },
-			          // {
-			          //   'email': 'Sal.Kojak@njmeadowlands.gov',
-			          //   'type': 'to',
-			          // },
+			          {
+			            'email': 'Dominador.elefante@njmeadowlands.gov',
+			            'type': 'to',
+			          },
+			          {
+			            'email': 'Stephanie.Bosits@njmeadowlands.gov',
+			            'type': 'to',
+			          },
+			          {
+			            'email': 'Sal.Kojak@njmeadowlands.gov',
+			            'type': 'to',
+			          },
 			          {
 			            'email': 'steven.birkner@njmeadowlands.gov',
 			            'type': 'to',
@@ -305,18 +305,18 @@ function postOutfall() {
 			    'message': {
 			      'from_email': 'steven.birkner@njmeadowlands.gov',
 			      'to': [
-			          // {
-			          //   'email': 'Dominador.elefante@njmeadowlands.gov',
-			          //   'type': 'to',
-			          // },
-			          // {
-			          //   'email': 'Stephanie.Bosits@njmeadowlands.gov',
-			          //   'type': 'to',
-			          // },
-			          // {
-			          //   'email': 'Sal.Kojak@njmeadowlands.gov',
-			          //   'type': 'to',
-			          // },
+			          {
+			            'email': 'Dominador.elefante@njmeadowlands.gov',
+			            'type': 'to',
+			          },
+			          {
+			            'email': 'Stephanie.Bosits@njmeadowlands.gov',
+			            'type': 'to',
+			          },
+			          {
+			            'email': 'Sal.Kojak@njmeadowlands.gov',
+			            'type': 'to',
+			          },
 			          {
 			            'email': 'steven.birkner@njmeadowlands.gov',
 			            'type': 'to',
@@ -394,18 +394,18 @@ function postStormline() {
 			    'message': {
 			      'from_email': 'steven.birkner@njmeadowlands.gov',
 			      'to': [
-			          // {
-			          //   'email': 'Dominador.elefante@njmeadowlands.gov',
-			          //   'type': 'to',
-			          // },
-			          // {
-			          //   'email': 'Stephanie.Bosits@njmeadowlands.gov',
-			          //   'type': 'to',
-			          // },
-			          // {
-			          //   'email': 'Sal.Kojak@njmeadowlands.gov',
-			          //   'type': 'to',
-			          // },
+			          {
+			            'email': 'Dominador.elefante@njmeadowlands.gov',
+			            'type': 'to',
+			          },
+			          {
+			            'email': 'Stephanie.Bosits@njmeadowlands.gov',
+			            'type': 'to',
+			          },
+			          {
+			            'email': 'Sal.Kojak@njmeadowlands.gov',
+			            'type': 'to',
+			          },
 			          {
 			            'email': 'steven.birkner@njmeadowlands.gov',
 			            'type': 'to',
