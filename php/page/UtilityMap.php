@@ -126,7 +126,7 @@
 				width: 100%;
 				height: 50px;
 				z-index: 2;
-				background-color: #f4f6f9;
+				background-color: #3c557d;
 				position: absolute;
 				float: left;
 				margin-bottom: 10px;
@@ -157,7 +157,7 @@
         <script src="js/script.js"></script>
 		<script src="js/main.js"></script>
         <div id="navBar">
-        	<div id="imgCon"><img id="logo" src="css/img/map-logo-57x57.png" alt=""></div>
+        	<div id="imgCon"><img id="logo" src="css/img/logo.png" alt=""></div>
         	<div id="logoFont">DPW Dashboard</div>
         	<div style="float: right;">
 	        	<div id="muniCon" >
