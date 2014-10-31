@@ -347,33 +347,9 @@
 						 	'<label>CB Type: ' +
 						 		'<input type="text" name="CBType" id="CBType" value="'+cbType+'">' + 
 						 	'</label>' + 
-						 	'<label>Top of Structure: ' +
+						 	'<label>Rim Elevation: ' +
 						 		'<input type="text" name="RimElevationFt" id="RimElevationFt" style="width: 50px;" value="'+rimEl+'"> (ft) ' + 
 						 	'</label><br>' + 
-						 	'<label>Diameter: ' +
-						 		'<input type="text" name="AccessDiameterIn" id="AccessDiameterIn" style="width: 50px;" value="'+accDia+'"> (in)' +
-						 	'</label>' + 
-						 	'<label>Access Material: ' +
-						 		'<select name="AccessMaterial" id="AccessMaterial">' +
-									'<option value=""></option>'+
-									'<option value="Steel">Steel</option>'+
-									'<option value="Iron">Iron</option>'+
-									'<option value="Other">Other</option>' +
-									'<option value="Unknown">Unknown</option>'+
-								'</select>'+
-						 	'</label>' + 
-						 	'<label>Access Type: ' +
-						 		'<select name="AccessType" id="AccessType">' +
-									'<option value=""></option>'+
-									'<option value="Door">Door</option>'+
-									'<option value="Grate">Grate</option>'+
-									'<option value="Hand">Hand</option>'+
-									'<option value="Lid">Lid</option>'+
-									'<option value="Manhole Cover">Manhole Cover</option>'+
-									'<option value="Other">Other</option>'+
-									'<option value="Unkown">Unkown</option>'+
-								'</select>'+ 
-						 	'</label>' + 
 						 	'<label>Invert Elevation: ' +
 						 		'<input type="text" name="InvertElevationFt" id="InvertElevationFt" style="width: 50px;" value="'+inverEl+'"> (ft) ' +
 						 	'</label>' + 
@@ -441,22 +417,6 @@
         opts = sel.options;
         for(var opt, j = 0; opt = opts[j]; j++) {
         if (opt.value == condition) {
-          	sel.selectedIndex = j;
-          	break;
-          	}
-        }
-        sel = document.getElementById('AccessMaterial');
-        opts = sel.options;
-        for(var opt, j = 0; opt = opts[j]; j++) {
-        if (opt.value == accMat) {
-          	sel.selectedIndex = j;
-          	break;
-          	}
-        }
-        sel = document.getElementById('AccessType');
-        opts = sel.options;
-        for(var opt, j = 0; opt = opts[j]; j++) {
-        if (opt.value == accType) {
           	sel.selectedIndex = j;
           	break;
           	}
@@ -549,55 +509,8 @@
 						 	'<label>Access Diameter: ' +
 						 		'<input type="text" name="AccessDiameterIn" id="AccessDiameterIn" style="width: 50px;" value="'+accDia+'"> (in) ' +
 						 	'</label>' + 
-						 	'<label>Access Type: ' +
-						 		'<select name="AccessType" id="AccessType">' +
-									'<option value=""></option>'+
-									'<option value="Door">Door</option>'+
-									'<option value="Grate">Grate</option>'+
-									'<option value="Hand">Hand</option>'+
-									'<option value="Lid">Lid</option>'+
-									'<option value="Manhole Cover">Manhole Cover</option>'+
-									'<option value="Other">Other</option>'+
-									'<option value="Unkown">Unkown</option>'+
-								'</select>'+ 
-						 	'</label>' + 
-						 	'<label>Ground Type: ' +
-						 		'<input type="text" name="GroundType" id="GroundType" value="'+groundType+'">' + 
-						 	'</label>' + 
-						 	'<label>High Pipe Elevation: ' +
-						 		'<input type="text" name="HighPipeElevation" id="HighPipeElevationFt" style="width: 50px;" value="'+hpe+'"> (ft) ' +
-						 	'</label>' + 
 						 	'<label>Invert Elevation: ' +
 						 		'<input type="text" name="InvertElevation" id="InvertElevationFt" style="width: 50px;" value="'+inverEl+'"> (ft) ' +
-						 	'</label>' + 
-						 	'<label>Manhole Drop: ' +
-						 		'<input type="text" name="ManholeDrop" id="ManholeDrop" value="'+manholeDrop+'">' + 
-						 	'</label>' + 
-						 	'<label>Interior Drop: ' +
-						 		'<input type="text" name="InteriorDrop" id="InteriorDropIn" style="width: 50px;" value="'+interDrop+'"> (in) ' +
-						 	'</label>' + 
-						 	'<label>Wall Material: ' +
-								'<select name="WallMaterial" id="WallMaterial">' +
-									'<option value=""></option>'+
-									'<option value="Brick">Brick</option>'+
-									'<option value="Concrete">Concrete</option>'+
-									'<option value="Reinforced Concrete">Reinforced Concrete</option>'+
-									'<option value="Other">Other</option>'+
-									'<option value="Unkown">Unkown</option>'+
-								'</select>'+						 	
-							'</label>' + 
-						 	'<label>Structural Shape: ' +
-						 		'<input type="text" name="StructuralShape" id="StructuralShape" value="'+structShape+'">' + 
-						 	'</label>' + 
-						 	'<label>Manhole Type: ' +
-						 		'<input type="text" name="ManholeType" id="ManholeType" value="'+manholeType+'">' + 
-						 	'</label>' + 
-						 	'<label>Metered: ' +
-						 		'<select name="Metered" id="Metered">' +
-									'<option value=""></option>'+
-									'<option value="0">False</option>'+
-									'<option value="1">True</option>'+
-								'</select>'+
 						 	'</label>' + 
 						 	'<label>Comments: <br>' +
 						 		'<textarea name="Comments" id="Comments" cols="30" rows="10" style="height: 150px;">'+comments+'</textarea>' +
@@ -654,34 +567,10 @@
 	          	break;
           	}
         }
-        sel = document.getElementById('AccessType');
-        opts = sel.options;
-        for(var opt, j = 0; opt = opts[j]; j++) {
-        if (opt.value == accType) {
-          	sel.selectedIndex = j;
-          	break;
-          	}
-        }
-        sel = document.getElementById('Metered');
-        opts = sel.options;
-        for(var opt, j = 0; opt = opts[j]; j++) {
-          	if (opt.value == mv) {
-          		sel.selectedIndex = j;
-          		break;
-          	}
-        }
         sel = document.getElementById('OwnedBy');
         opts = sel.options;
         for(var opt, j = 0; opt = opts[j]; j++) {
           	if (opt.value == ownedBy) {
-          		sel.selectedIndex = j;
-          		break;
-          	}
-        }
-        sel = document.getElementById('WallMaterial');
-        opts = sel.options;
-        for(var opt, j = 0; opt = opts[j]; j++) {
-          	if (opt.value == wallMat) {
           		sel.selectedIndex = j;
           		break;
           	}
@@ -749,7 +638,7 @@
 					checkboxlayer.id = "layer-" + layers[index].id;
 					checkboxlayer.className = "checkbox";
 					checkboxlayer.value = layers[index].id;
-					labellayer = '<span for="' + checkboxlayer.id + '">' + layers[index].name + '</span>';
+					labellayer = '<div class="layerlabel" for="' + checkboxlayer.id + '">' + layers[index].name + '</div><br>';
 					legendimg = document.createElement("img");
 					legendimg.className = "legend-image";
 					legendimg.src = "data:" + legend[layers[index].id].legend[0].contentType + ";base64," + legend[layers[index].id].legend[0].imageData;

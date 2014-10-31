@@ -368,6 +368,10 @@
 
 				echo json_encode($json);
 				break;
+			} else {
+				$json['layer'] = $layer->layerName;
+				echo json_encode($json);
+				break;
 			}
 
 		}
